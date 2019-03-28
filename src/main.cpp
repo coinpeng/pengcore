@@ -2569,7 +2569,6 @@ bool DisconnectBlock(CBlock& block, CValidationState& state, CBlockIndex* pindex
                 if(IsSporkActive(SPORK_17_FAKE_STAKE_FIX) && block.GetBlockTime() >= GetSporkValue(SPORK_17_FAKE_STAKE_FIX))
                     mapStakeSpent.erase(out);            }
 
-            }
         }
     }
 
