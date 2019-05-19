@@ -23,12 +23,12 @@ If you're using the automated script (found in [contrib/gitian-build.sh](/contri
 Check out the source code in the following directory hierarchy.
 
     cd /path/to/your/toplevel/build
-    git clone https://github.com/eastcoastcrypto/gitian.sigs.git
-    git clone https://github.com/eastcoastcrypto/penguin-detached-sigs.git
+    git clone https://github.com/coinpeng/gitian.sigs.git
+    git clone https://github.com/coinpeng/peng-detached-sigs.git
     git clone https://github.com/devrandom/gitian-builder.git
-    git clone https://github.com/eastcoastcrypto/penguin.git
+    git clone https://github.com/coinpeng/pengcore.git
 
-### Penguin maintainers/release engineers, suggestion for writing release notes
+### PENG maintainers/release engineers, suggestion for writing release notes
 
 Write release notes. git shortlog helps a lot, for example:
 
@@ -49,7 +49,7 @@ If you're using the automated script (found in [contrib/gitian-build.sh](/contri
 
 Setup Gitian descriptors:
 
-    pushd ./penguin
+    pushd ./peng
     export SIGNER=(your Gitian key, ie bluematt, sipa, etc)
     export VERSION=(new version, e.g. 0.8.0)
     git fetch
@@ -83,7 +83,7 @@ Create the OS X SDK tarball, see the [OS X readme](README_osx.md) for details, a
 By default, Gitian will fetch source files as needed. To cache them ahead of time:
 
     pushd ./gitian-builder
-    make -C ../penguin/depends download SOURCES_PATH=`pwd`/cache/common
+    make -C ../peng/depends download SOURCES_PATH=`pwd`/cache/common
     popd
 
 Only missing files will be fetched, so this is safe to re-run for each build.
@@ -91,55 +91,55 @@ Only missing files will be fetched, so this is safe to re-run for each build.
 NOTE: Offline builds must use the --url flag to ensure Gitian fetches only from local URLs. For example:
 
     pushd ./gitian-builder
-    ./bin/gbuild --url penguin=/path/to/penguin,signature=/path/to/sigs {rest of arguments}
+    ./bin/gbuild --url peng=/path/to/peng,signature=/path/to/sigs {rest of arguments}
     popd
 
 The gbuild invocations below <b>DO NOT DO THIS</b> by default.
 
-### Build and sign Penguin Core for Linux, Windows, and OS X:
+### Build and sign PENG Core for Linux, Windows, and OS X:
 
     pushd ./gitian-builder
-    ./bin/gbuild --memory 3000 --commit penguin=v${VERSION} ../penguin/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../penguin/contrib/gitian-descriptors/gitian-linux.yml
-    mv build/out/penguin-*.tar.gz build/out/src/penguin-*.tar.gz ../
+    ./bin/gbuild --memory 3000 --commit peng=v${VERSION} ../peng/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../peng/contrib/gitian-descriptors/gitian-linux.yml
+    mv build/out/peng-*.tar.gz build/out/src/peng-*.tar.gz ../
 
-    ./bin/gbuild --memory 3000 --commit penguin=v${VERSION} ../penguin/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../penguin/contrib/gitian-descriptors/gitian-win.yml
-    mv build/out/penguin-*-win-unsigned.tar.gz inputs/penguin-win-unsigned.tar.gz
-    mv build/out/penguin-*.zip build/out/penguin-*.exe ../
+    ./bin/gbuild --memory 3000 --commit peng=v${VERSION} ../peng/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../peng/contrib/gitian-descriptors/gitian-win.yml
+    mv build/out/peng-*-win-unsigned.tar.gz inputs/peng-win-unsigned.tar.gz
+    mv build/out/peng-*.zip build/out/peng-*.exe ../
 
-    ./bin/gbuild --memory 3000 --commit penguin=v${VERSION} ../penguin/contrib/gitian-descriptors/gitian-osx.yml
-    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../penguin/contrib/gitian-descriptors/gitian-osx.yml
-    mv build/out/penguin-*-osx-unsigned.tar.gz inputs/penguin-osx-unsigned.tar.gz
-    mv build/out/penguin-*.tar.gz build/out/penguin-*.dmg ../
+    ./bin/gbuild --memory 3000 --commit peng=v${VERSION} ../peng/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-unsigned --destination ../gitian.sigs/ ../peng/contrib/gitian-descriptors/gitian-osx.yml
+    mv build/out/peng-*-osx-unsigned.tar.gz inputs/peng-osx-unsigned.tar.gz
+    mv build/out/peng-*.tar.gz build/out/peng-*.dmg ../
 
-    ./bin/gbuild --memory 3000 --commit penguin=v${VERSION} ../penguin/contrib/gitian-descriptors/gitian-aarch64.yml
-    ./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../penguin/contrib/gitian-descriptors/gitian-aarch64.yml
-    mv build/out/penguin-*.tar.gz build/out/src/penguin-*.tar.gz ../
+    ./bin/gbuild --memory 3000 --commit peng=v${VERSION} ../peng/contrib/gitian-descriptors/gitian-aarch64.yml
+    ./bin/gsign --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../peng/contrib/gitian-descriptors/gitian-aarch64.yml
+    mv build/out/peng-*.tar.gz build/out/src/peng-*.tar.gz ../
     popd
 
 Build output expected:
 
-  1. source tarball (`penguin-${VERSION}.tar.gz`)
-  2. linux 32-bit and 64-bit dist tarballs (`penguin-${VERSION}-linux[32|64].tar.gz`)
-  3. windows 32-bit and 64-bit unsigned installers and dist zips (`penguin-${VERSION}-win[32|64]-setup-unsigned.exe`, `penguin-${VERSION}-win[32|64].zip`)
-  4. OS X unsigned installer and dist tarball (`penguin-${VERSION}-osx-unsigned.dmg`, `penguin-${VERSION}-osx64.tar.gz`)
+  1. source tarball (`peng-${VERSION}.tar.gz`)
+  2. linux 32-bit and 64-bit dist tarballs (`peng-${VERSION}-linux[32|64].tar.gz`)
+  3. windows 32-bit and 64-bit unsigned installers and dist zips (`peng-${VERSION}-win[32|64]-setup-unsigned.exe`, `peng-${VERSION}-win[32|64].zip`)
+  4. OS X unsigned installer and dist tarball (`peng-${VERSION}-osx-unsigned.dmg`, `peng-${VERSION}-osx64.tar.gz`)
   5. Gitian signatures (in `gitian.sigs/${VERSION}-<linux|{win,osx}-unsigned>/(your Gitian key)/`)
 
 ### Verify other gitian builders signatures to your own. (Optional)
 
 Add other gitian builders keys to your gpg keyring, and/or refresh keys.
 
-    gpg --import penguin/contrib/gitian-keys/*.gpg
+    gpg --import peng/contrib/gitian-keys/*.gpg
     gpg --refresh-keys
 
 Verify the signatures
 
     pushd ./gitian-builder
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../penguin/contrib/gitian-descriptors/gitian-linux.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../penguin/contrib/gitian-descriptors/gitian-win.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../penguin/contrib/gitian-descriptors/gitian-osx.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-aarch64 ../penguin/contrib/gitian-descriptors/gitian-aarch64.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-linux ../peng/contrib/gitian-descriptors/gitian-linux.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-unsigned ../peng/contrib/gitian-descriptors/gitian-win.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-unsigned ../peng/contrib/gitian-descriptors/gitian-osx.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-aarch64 ../peng/contrib/gitian-descriptors/gitian-aarch64.yml
     popd
 
 ### Next steps:
@@ -161,22 +161,22 @@ Codesigner only: Create Windows/OS X detached signatures:
 
 Codesigner only: Sign the osx binary:
 
-    transfer penguin-osx-unsigned.tar.gz to osx for signing
-    tar xf penguin-osx-unsigned.tar.gz
+    transfer peng-osx-unsigned.tar.gz to osx for signing
+    tar xf peng-osx-unsigned.tar.gz
     ./detached-sig-create.sh -s "Key ID"
     Enter the keychain password and authorize the signature
     Move signature-osx.tar.gz back to the gitian host
 
 Codesigner only: Sign the windows binaries:
 
-    tar xf penguin-win-unsigned.tar.gz
+    tar xf peng-win-unsigned.tar.gz
     ./detached-sig-create.sh -key /path/to/codesign.key
     Enter the passphrase for the key when prompted
     signature-win.tar.gz will be created
 
 Codesigner only: Commit the detached codesign payloads:
 
-    cd ~/penguin-detached-sigs
+    cd ~/peng-detached-sigs
     checkout the appropriate branch for this release series
     rm -rf *
     tar xf signature-osx.tar.gz
@@ -189,25 +189,25 @@ Codesigner only: Commit the detached codesign payloads:
 Non-codesigners: wait for Windows/OS X detached signatures:
 
 - Once the Windows/OS X builds each have 3 matching signatures, they will be signed with their respective release keys.
-- Detached signatures will then be committed to the [penguin-detached-sigs](https://github.com/eastcoastcrypto/penguin-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
+- Detached signatures will then be committed to the [peng-detached-sigs](https://github.com/coinpeng/peng-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
 
 Create (and optionally verify) the signed OS X binary:
 
     pushd ./gitian-builder
-    ./bin/gbuild -i --commit signature=v${VERSION} ../penguin/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../penguin/contrib/gitian-descriptors/gitian-osx-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../penguin/contrib/gitian-descriptors/gitian-osx-signer.yml
-    mv build/out/penguin-osx-signed.dmg ../penguin-${VERSION}-osx.dmg
+    ./bin/gbuild -i --commit signature=v${VERSION} ../peng/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gsign --signer $SIGNER --release ${VERSION}-osx-signed --destination ../gitian.sigs/ ../peng/contrib/gitian-descriptors/gitian-osx-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-osx-signed ../peng/contrib/gitian-descriptors/gitian-osx-signer.yml
+    mv build/out/peng-osx-signed.dmg ../peng-${VERSION}-osx.dmg
     popd
 
 Create (and optionally verify) the signed Windows binaries:
 
     pushd ./gitian-builder
-    ./bin/gbuild -i --commit signature=v${VERSION} ../penguin/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../penguin/contrib/gitian-descriptors/gitian-win-signer.yml
-    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../penguin/contrib/gitian-descriptors/gitian-win-signer.yml
-    mv build/out/penguin-*win64-setup.exe ../penguin-${VERSION}-win64-setup.exe
-    mv build/out/penguin-*win32-setup.exe ../penguin-${VERSION}-win32-setup.exe
+    ./bin/gbuild -i --commit signature=v${VERSION} ../peng/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gsign --signer $SIGNER --release ${VERSION}-win-signed --destination ../gitian.sigs/ ../peng/contrib/gitian-descriptors/gitian-win-signer.yml
+    ./bin/gverify -v -d ../gitian.sigs/ -r ${VERSION}-win-signed ../peng/contrib/gitian-descriptors/gitian-win-signer.yml
+    mv build/out/peng-*win64-setup.exe ../peng-${VERSION}-win64-setup.exe
+    mv build/out/peng-*win32-setup.exe ../peng-${VERSION}-win32-setup.exe
     popd
 
 Commit your signature for the signed OS X/Windows binaries:
@@ -229,23 +229,23 @@ sha256sum * > SHA256SUMS
 
 The list of files should be:
 ```
-penguin-${VERSION}-aarch64-linux-gnu.tar.gz
-penguin-${VERSION}-arm-linux-gnueabihf.tar.gz
-penguin-${VERSION}-i686-pc-linux-gnu.tar.gz
-penguin-${VERSION}-x86_64-linux-gnu.tar.gz
-penguin-${VERSION}-osx64.tar.gz
-penguin-${VERSION}-osx.dmg
-penguin-${VERSION}.tar.gz
-penguin-${VERSION}-win32-setup.exe
-penguin-${VERSION}-win32.zip
-penguin-${VERSION}-win64-setup.exe
-penguin-${VERSION}-win64.zip
+peng-${VERSION}-aarch64-linux-gnu.tar.gz
+peng-${VERSION}-arm-linux-gnueabihf.tar.gz
+peng-${VERSION}-i686-pc-linux-gnu.tar.gz
+peng-${VERSION}-x86_64-linux-gnu.tar.gz
+peng-${VERSION}-osx64.tar.gz
+peng-${VERSION}-osx.dmg
+peng-${VERSION}.tar.gz
+peng-${VERSION}-win32-setup.exe
+peng-${VERSION}-win32.zip
+peng-${VERSION}-win64-setup.exe
+peng-${VERSION}-win64.zip
 ```
 The `*-debug*` files generated by the gitian build contain debug symbols
 for troubleshooting by developers. It is assumed that anyone that is interested
 in debugging can run gitian to generate the files for themselves. To avoid
 end-user confusion about which file to pick, as well as save storage
-space *do not upload these to the penguincoin.com server*.
+space *do not upload these to the pengcoin.com server*.
 
 - GPG-sign it, delete the unsigned file:
 ```
@@ -261,10 +261,10 @@ Note: check that SHA256SUMS itself doesn't end up in SHA256SUMS, which is a spur
 
   - bitcointalk announcement thread
 
-  - Optionally twitter, reddit /r/penguin, ... but this will usually sort out itself
+  - Optionally twitter, reddit /r/peng, ... but this will usually sort out itself
 
   - Archive release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
 
-  - Create a [new GitHub release](https://github.com/eastcoastcrypto/Penguin/releases/new) with a link to the archived release notes.
+  - Create a [new GitHub release](https://github.com/coinpeng/pengcore/releases/new) with a link to the archived release notes.
 
   - Celebrate

@@ -1,10 +1,10 @@
 Sample configuration files for:
 
-SystemD: penguind.service
-Upstart: penguind.conf
-OpenRC:  penguind.openrc
-         penguind.openrcconf
-CentOS:  penguind.init
+SystemD: pengd.service
+Upstart: pengd.conf
+OpenRC:  pengd.openrc
+         pengd.openrcconf
+CentOS:  pengd.init
 
 have been made available to assist packagers in creating node packages here.
 

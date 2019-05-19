@@ -1,12 +1,12 @@
 (note: this is a temporary file, to be added-to by anybody, and moved to release-notes at release time)
 
-Penguin Core version *version* is now available from:
+PENG Core version *version* is now available from:
 
-  <https://github.com/eastcoastcrypto/Penguin/releases>
+  <https://github.com/coinpeng/pengcore/releases>
 
 Please report bugs using the issue tracker at github:
 
-  <https://github.com/eastcoastcrypto/Civita/issues>
+  <https://github.com/coinpeng/pengcore/issues>
 
 Mandatory Update
 ==============
@@ -16,12 +16,12 @@ simul autem fortior nobis
 How to Upgrade
 ==============
 
-If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/Penguin-Qt (on Mac) or penguind/penguin-qt (on Linux).
+If you are running an older version, shut it down. Wait until it has completely shut down (which might take a few minutes for older versions), then run the installer (on Windows) or just copy over /Applications/PENG-Qt (on Mac) or pengd/peng-qt (on Linux).
 
 Compatibility
 ==============
 
-Penguin Core is extensively tested on multiple operating systems using
+PENG Core is extensively tested on multiple operating systems using
 the Linux kernel, macOS 10.8+, and Windows Vista and later.
 
 Microsoft ended support for Windows XP on [April 8th, 2014](https://www.microsoft.com/en-us/WindowsForBusiness/end-of-xp-support),
@@ -29,7 +29,7 @@ No attempt is made to prevent installing or running the software on Windows XP, 
 can still do so at your own risk but be aware that there are known instabilities and issues.
 Please do not report issues about Windows XP to the issue tracker.
 
-Penguin Core should also work on most other Unix-like systems but is not
+PENG Core should also work on most other Unix-like systems but is not
 frequently tested on them.
 
 Notable Changes

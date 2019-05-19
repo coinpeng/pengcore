@@ -7,7 +7,7 @@
 #define BITCOIN_COMPAT_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/penguin-config.h"
+#include "config/peng-config.h"
 #endif
 
 #ifdef WIN32

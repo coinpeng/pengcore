@@ -1,9 +1,9 @@
-Penguin Core
+PENG Core
 =====================
 
 Intro
 -----
-Penguin is a free open source peer-to-peer electronic cash system that is
+PENG is a free open source peer-to-peer electronic cash system that is
 completely decentralized, without the need for a central server or trusted
 parties.  Users hold the crypto keys to their own money and transact directly
 with each other, with the help of a P2P network to check for double-spending.
@@ -11,9 +11,9 @@ with each other, with the help of a P2P network to check for double-spending.
 
 Setup
 -----
-Unpack the files into a directory and run penguin-qt.exe.
+Unpack the files into a directory and run peng-qt.exe.
 
-Penguin Core is the original Penguin client and it builds the backbone of the network.
-However, it downloads and stores the entire history of Penguin transactions;
+PENG Core is the original PENG client and it builds the backbone of the network.
+However, it downloads and stores the entire history of PENG transactions;
 depending on the speed of your computer and network connection, the synchronization
 process can take anywhere from a few hours to a day or more.

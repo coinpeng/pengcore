@@ -66,15 +66,15 @@ bin_PROGRAMS =
 TESTS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += penguind
+  bin_PROGRAMS += pengd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += penguin-cli penguin-tx
+  bin_PROGRAMS += peng-cli peng-tx
 endif
 
 .PHONY: FORCE
-# penguin core #
+# peng core #
 BITCOIN_CORE_H = \
   activemasternode.h \
   accumulators.h \
@@ -190,7 +190,7 @@ obj/build.h: FORCE
 	  $(abs_top_srcdir)
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between penguind and penguin-qt
+# server: shared between pengd and peng-qt
 libbitcoin_server_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_SOURCES = \
   addrman.cpp \
@@ -236,7 +236,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between penguind and penguin-qt, but only linked
+# wallet: shared between pengd and peng-qt, but only linked
 # when wallet enabled
 
 libbitcoin_wallet_a_CFLAGS = -fPIC
@@ -356,7 +356,7 @@ libzerocoin_libbitcoin_zerocoin_a_SOURCES = \
   libzerocoin/Params.cpp \
   libzerocoin/SerialNumberSignatureOfKnowledge.cpp
 
-# common: shared between penguind, and penguin-qt and non-server tools
+# common: shared between pengd, and peng-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_common_a_SOURCES = \
   accumulators.cpp \
@@ -416,7 +416,7 @@ libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 libbitcoin_util_a_SOURCES += compat/glibcxx_compat.cpp
 endif
 
-# cli: shared between penguin-cli and penguin-qt
+# cli: shared between peng-cli and peng-qt
 libbitcoin_cli_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_SOURCES = \
   rpcclient.cpp \
@@ -426,7 +426,7 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-penguind_LDADD = \
+pengd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UNIVALUE) \
@@ -438,26 +438,26 @@ penguind_LDADD = \
   $(LIBSECP256K1)
 
 if ENABLE_ZMQ
-penguind_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+pengd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 
 if ENABLE_WALLET
-penguind_LDADD += libbitcoin_wallet.a
+pengd_LDADD += libbitcoin_wallet.a
 endif
-penguind_SOURCES = penguind.cpp
+pengd_SOURCES = pengd.cpp
 #
 
 if TARGET_WINDOWS
-penguind_SOURCES += penguind-res.rc
+pengd_SOURCES += pengd-res.rc
 endif
 
-penguind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-penguind_CPPFLAGS = $(BITCOIN_INCLUDES)
-penguind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+pengd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+pengd_CPPFLAGS = $(BITCOIN_INCLUDES)
+pengd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 
-# penguin-cli binary #
-penguin_cli_LDADD = \
+# peng-cli binary #
+peng_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBBITCOIN_UTIL) \
   $(BOOST_LIBS) \
@@ -465,14 +465,14 @@ penguin_cli_LDADD = \
   $(CRYPTO_LIBS) \
   $(EVENT_LIBS)
 
-penguin_cli_SOURCES = \
-  penguin-cli.cpp
+peng_cli_SOURCES = \
+  peng-cli.cpp
 
-penguin_cli_CPPFLAGS = $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+peng_cli_CPPFLAGS = $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
 #
 
-# penguin-tx binary #
-penguin_tx_LDADD = \
+# peng-tx binary #
+peng_tx_LDADD = \
   $(LIBBITCOIN_UNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_ZEROCOIN) \
@@ -482,15 +482,15 @@ penguin_tx_LDADD = \
   $(BOOST_LIBS) \
   $(CRYPTO_LIBS)
 
-penguin_tx_SOURCES = penguin-tx.cpp
-penguin_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
+peng_tx_SOURCES = peng-tx.cpp
+peng_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
-penguin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+peng_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-penguin_cli_SOURCES += penguin-cli-res.rc
+peng_cli_SOURCES += peng-cli-res.rc
 endif
-penguin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+peng_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/bitcoinconsensus.h

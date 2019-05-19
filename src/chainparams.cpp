@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The Penguin developers
+// Copyright (c) 2017 The PENG Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -54,10 +54,26 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 // + Contains no strange transactions
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x00000406d358851ffbc18bd9d8db3d59bfb4aac2d5ee3063ed8808b22b7d8d92"));
+    (0, uint256("0x00000406d358851ffbc18bd9d8db3d59bfb4aac2d5ee3063ed8808b22b7d8d92"))
+    (100000, uint256("0xd4d1dc967743c05e342dec57f12789bdfd2338247a1e6e0e6fdddb3395b91b47"))
+    (200000, uint256("0x0a229a0501085d5542b17dea702ea9843130eb2419faaf3626829b7c90a867ca"))
+    (300000, uint256("0x40c6683572603c1e1850525abba8e3509fc4b010b51a9ef5a218678c614fd07f"))
+    (400002, uint256("0xa3fd9919e0b10bd4f06ac13de8ee669a298cb17ef787e28d1146c6c8f7ae6159"))
+    (420000, uint256("0x1befa79d7ca082b6780b6f24117fca10543dea47c70b14cb88388d304008ac4a"))
+    (422497, uint256("0x41a7c6d5aa1018765f1ac78a46bff7d20951d01f99cc40fa995e274b860cc295"))
+    (425000, uint256("0x038af35807dd2ea709de42a90b75af0fee36bc8340b9eb7cb2fe1d5a9677dc1c"))
+    (427500, uint256("0xf6779da793364c9a767d0b7bcc2df822b36b9689e66a4355c4226775f9c53b3d"))
+    (430000, uint256("0xb8380c6106edec48d1761fce7dc12a88c4d90bab6a55c8620a461c8f7377bec9"))
+    (431000, uint256("0x7ce54a849fe93ec7efcd668a93f47772581fcfb25a483b5f04fb0031fd5a8c17"))
+    (432003, uint256("0xbd44debc79c16c362b9184d73d41206a904a427a34a7fc235c0395c0eec3b7d0"))
+    (433000, uint256("0x9b2f88f9f591be061e04e9774b3cc2a4cfe3cae63b23ee3df5e15b8b9d22cc8f"))
+    (434000, uint256("0x7b922c886796dd5c94f5a0bf53abf25d50c3530095ac29d6288456b1d04a9132"))
+    (434500, uint256("0xec805240606029a05b74e380677c6ae7fe23b433aa9c0db21b2d48dd330f7596"))
+    (434600, uint256("0xaf89f6b03eb3c54867e116ee91318954e579c7b3b86d638c58ece8826e1320fe"))
+    (434700, uint256("0x1c4712155ab2db23954910b8bdc4d0363e1d5bc0924e29d25e40b46bc0fefe3a"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1531028215, // * UNIX timestamp of last checkpoint block
+    1557997119, // * UNIX timestamp of last checkpoint block
     0,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
@@ -106,15 +122,15 @@ public:
         pchMessageStart[3] = 0x51;
         vAlertPubKey = ParseHex("049a640185d525a4471e031816f56be67720141fcaa76d3feabc8080ffd98f1c06b6ff77ca07c5f61c1e3ecc15b6947d9e0d3d4df78e7c09d0cc0c8956ad87d4e1");
         nDefaultPort =  3182;
-        bnProofOfWorkLimit = ~uint256(0) >> 20; // Penguin starting difficulty is 1 / 2^12
+        bnProofOfWorkLimit = ~uint256(0) >> 20; // PENG starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
-        nTargetTimespan = 3 * 60 * 60; // Penguin: 3 hours
-        nTargetSpacing = 1 * 60;  // Penguin: 1 minute
+        nTargetTimespan = 3 * 60 * 60; // PENG: 3 hours
+        nTargetSpacing = 1 * 60;  // PENG: 1 minute
         nMaturity = 10;
         nMasternodeCountDrift = 20;
         nMaxMoneyOut = 21000000 * COIN;
@@ -208,13 +224,13 @@ public:
         pchMessageStart[2] = 0x65;
         pchMessageStart[3] = 0xba;
         vAlertPubKey = ParseHex("042292b1f401860eea99e1a8a103effbd7e1c013a59a1a3a0c91c9d1997a0bc6f338567278c11344802838c107055bf7c1641eaed61e879245c255a4f5be5746fc");
-        nDefaultPort = 51434;
+        nDefaultPort = 3184;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // Penguin: 1 day
-        nTargetSpacing = 1 * 15;  // Penguin: 15 seconds
+        nTargetTimespan = 1 * 60; // PENG: 1 day
+        nTargetSpacing = 1 * 15;  // PENG: 15 seconds
         nLastPOWBlock = 600;
         nMaturity = 2;
         nMasternodeCountDrift = 4;
@@ -240,22 +256,22 @@ public:
 
         //TODO:Add testnet nodeS
         //Testnet node 1
-         vSeeds.push_back(CDNSSeedData("testnet1.penguin.org", "45.32.234.179"));
+         vSeeds.push_back(CDNSSeedData("testnet1.peng.org", "45.32.234.179"));
            //Testnet node 2
-         vSeeds.push_back(CDNSSeedData("testnet2.penguin.org", "209.250.253.166"));        // Single node address
+         vSeeds.push_back(CDNSSeedData("testnet2.peng.org", "209.250.253.166"));        // Single node address
 
         // vSeeds.push_back(CDNSSeedData("209.250.240.94", "45.77.239.30"));       // Single node address
         // vSeeds.push_back(CDNSSeedData("45.77.176.204", "45.76.226.204"));       // Single node address
 
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet penguin addresses start with 'x' or 'y'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet penguin script addresses start with '8' or '9'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet peng addresses start with 'x' or 'y'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet peng script addresses start with '8' or '9'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
-        // Testnet penguin BIP32 pubkeys start with 'DRKV'
+        // Testnet peng BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
-        // Testnet penguin BIP32 prvkeys start with 'DRKP'
+        // Testnet peng BIP32 prvkeys start with 'DRKP'
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x3a)(0x80)(0x58)(0x37).convert_to_container<std::vector<unsigned char> >();
-        // Testnet penguin BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet peng BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
@@ -302,15 +318,15 @@ public:
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-        nTargetTimespan = 24 * 60 * 60; // Penguin: 1 day
-        nTargetSpacing = 1 * 60;        // Penguin: 1 minutes
+        nTargetTimespan = 24 * 60 * 60; // PENG: 1 day
+        nTargetSpacing = 1 * 60;        // PENG: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         genesis.nTime = 1515524400;
         genesis.nBits = 0x1e0ffff0;
         genesis.nNonce = 732084;
 
         hashGenesisBlock = genesis.GetHash();
-        nDefaultPort = 51436;
+        nDefaultPort = 3186;
         //assert(hashGenesisBlock == uint256("0x000008415bdca132b70cf161ecc548e5d0150fd6634a381ee2e99bb8bb77dbb3"));
 
         vFixedSeeds.clear(); //! Testnet mode doesn't have any fixed seeds.
@@ -341,7 +357,7 @@ public:
     {
         networkID = CBaseChainParams::UNITTEST;
         strNetworkID = "unittest";
-        nDefaultPort = 51478;
+        nDefaultPort = 3188;
         vFixedSeeds.clear(); //! Unit test mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Unit test mode doesn't have any DNS seeds.
 

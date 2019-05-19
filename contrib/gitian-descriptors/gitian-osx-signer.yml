@@ -1,5 +1,5 @@
 ---
-name: "penguin-dmg-signer"
+name: "peng-dmg-signer"
 suites:
 - "trusty"
 architectures:
@@ -7,10 +7,10 @@ architectures:
 packages:
 - "faketime"
 remotes:
-- "url": "https://github.com/eastcoastcrypto/penguin-detached-sigs.git"
+- "url": "https://github.com/coinpeng/peng-detached-sigs.git"
   "dir": "signature"
 files:
-- "penguin-osx-unsigned.tar.gz"
+- "peng-osx-unsigned.tar.gz"
 script: |
   WRAP_DIR=$HOME/wrapped
   mkdir -p ${WRAP_DIR}
@@ -27,11 +27,11 @@ script: |
     chmod +x ${WRAP_DIR}/${prog}
   done
 
-  UNSIGNED=penguin-osx-unsigned.tar.gz
-  SIGNED=penguin-osx-signed.dmg
+  UNSIGNED=peng-osx-unsigned.tar.gz
+  SIGNED=peng-osx-signed.dmg
 
   tar -xf ${UNSIGNED}
   OSX_VOLNAME="$(cat osx_volname)"
   ./detached-sig-apply.sh ${UNSIGNED} signature/osx
-  ${WRAP_DIR}/genisoimage -no-cache-inodes -D -l -probe -V "Penguin-Qt" -no-pad -r -dir-mode 0755 -apple -o uncompressed.dmg signed-app
+  ${WRAP_DIR}/genisoimage -no-cache-inodes -D -l -probe -V "PENG-Qt" -no-pad -r -dir-mode 0755 -apple -o uncompressed.dmg signed-app
   ${WRAP_DIR}/dmg dmg uncompressed.dmg ${OUTDIR}/${SIGNED}

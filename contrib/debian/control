@@ -1,4 +1,4 @@
-Source: penguin
+Source: peng
 Section: utils
 Priority: optional
 Maintainer: Jonas Smedegaard <dr@jones.dk> ***TODO***
@@ -22,15 +22,15 @@ Build-Depends: debhelper,
  libqrencode-dev,
  libprotobuf-dev, protobuf-compiler
 Standards-Version: 3.9.2
-Homepage: http://www.penguin.org
-Vcs-Git: git://github.com/penguinproject/Penguin.git
-Vcs-Browser: http://github.com/penguinproject/Penguin
+Homepage: http://www.pengcore.io
+Vcs-Git: git://github.com/coinpeng/pengcore.git
+Vcs-Browser: http://github.com/coingpeng/pengcore
 
-Package: penguind
+Package: pengd
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - daemon
- Penguin is a free open source peer-to-peer electronic cash system that
+ PENG is a free open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
@@ -39,14 +39,14 @@ Description: peer-to-peer network based digital currency - daemon
  Full transaction history is stored locally at each client.  This
  requires 1+ GB of space, slowly growing.
  .
- This package provides the daemon, penguind, and the CLI tool
- penguin-cli to interact with the daemon.
+ This package provides the daemon, pengd, and the CLI tool
+ peng-cli to interact with the daemon.
 
-Package: penguin-qt
+Package: peng-qt
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: peer-to-peer network based digital currency - Qt GUI
- Penguin is a free open source peer-to-peer electronic cash system that
+ PENG is a free open source peer-to-peer electronic cash system that
  is completely decentralized, without the need for a central server or
  trusted parties.  Users hold the crypto keys to their own money and
  transact directly with each other, with the help of a P2P network to
@@ -55,4 +55,4 @@ Description: peer-to-peer network based digital currency - Qt GUI
  Full transaction history is stored locally at each client.  This
  requires 1+ GB of space, slowly growing.
  .
- This package provides Penguin-Qt, a GUI for Penguin based on Qt.
+ This package provides PENG-Qt, a GUI for PENG based on Qt.

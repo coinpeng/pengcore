@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The Penguin developers
+// Copyright (c) 2017 The PENG Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -238,10 +238,10 @@ Value stop(const Array& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop Penguin server.");
+            "\nStop PENG server.");
     // Shutdown will take long enough that the response should get back
     StartShutdown();
-    return "Penguin server stopping";
+    return "PENG server stopping";
 }
 
 
@@ -318,36 +318,36 @@ static const CRPCCommand vRPCCommands[] =
         {"hidden", "reconsiderblock", &reconsiderblock, true, true, false},
         {"hidden", "setmocktime", &setmocktime, true, false, false},
 
-        /* Penguin features */
-        {"penguin", "masternode", &masternode, true, true, false},
-        {"penguin", "listmasternodes", &listmasternodes, true, true, false},
-        {"penguin", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"penguin", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"penguin", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"penguin", "masternodedebug", &masternodedebug, true, true, false},
-        {"penguin", "startmasternode", &startmasternode, true, true, false},
-        {"penguin", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"penguin", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"penguin", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"penguin", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"penguin", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"penguin", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"penguin", "mnbudget", &mnbudget, true, true, false},
-        {"penguin", "preparebudget", &preparebudget, true, true, false},
-        {"penguin", "submitbudget", &submitbudget, true, true, false},
-        {"penguin", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"penguin", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"penguin", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"penguin", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"penguin", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"penguin", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"penguin", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"penguin", "checkbudgets", &checkbudgets, true, true, false},
-        {"penguin", "mnsync", &mnsync, true, true, false},
-        {"penguin", "spork", &spork, true, true, false},
-        {"penguin", "getpoolinfo", &getpoolinfo, true, true, false},
+        /* PENG features */
+        {"peng", "masternode", &masternode, true, true, false},
+        {"peng", "listmasternodes", &listmasternodes, true, true, false},
+        {"peng", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"peng", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"peng", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"peng", "masternodedebug", &masternodedebug, true, true, false},
+        {"peng", "startmasternode", &startmasternode, true, true, false},
+        {"peng", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"peng", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"peng", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"peng", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"peng", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"peng", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"peng", "mnbudget", &mnbudget, true, true, false},
+        {"peng", "preparebudget", &preparebudget, true, true, false},
+        {"peng", "submitbudget", &submitbudget, true, true, false},
+        {"peng", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"peng", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"peng", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"peng", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"peng", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"peng", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"peng", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"peng", "checkbudgets", &checkbudgets, true, true, false},
+        {"peng", "mnsync", &mnsync, true, true, false},
+        {"peng", "spork", &spork, true, true, false},
+        {"peng", "getpoolinfo", &getpoolinfo, true, true, false},
 #ifdef ENABLE_WALLET
-        {"penguin", "obfuscation", &obfuscation, false, false, true}, /* not threadSafe because of SendMoney */
+        {"peng", "obfuscation", &obfuscation, false, false, true}, /* not threadSafe because of SendMoney */
 
         /* Wallet */
         {"wallet", "addmultisigaddress", &addmultisigaddress, true, false, true},
@@ -626,16 +626,16 @@ void StartRPCThreads()
         unsigned char rand_pwd[32];
         GetRandBytes(rand_pwd, 32);
         uiInterface.ThreadSafeMessageBox(strprintf(
-                                             _("To use penguind, or the -server option to penguin-qt, you must set an rpcpassword in the configuration file:\n"
+                                             _("To use pengd, or the -server option to peng-qt, you must set an rpcpassword in the configuration file:\n"
                                                "%s\n"
                                                "It is recommended you use the following random password:\n"
-                                               "rpcuser=penguinrpc\n"
+                                               "rpcuser=pengrpc\n"
                                                "rpcpassword=%s\n"
                                                "(you do not need to remember this password)\n"
                                                "The username and password MUST NOT be the same.\n"
                                                "If the file does not exist, create it with owner-readable-only file permissions.\n"
                                                "It is also recommended to set alertnotify so you are notified of problems;\n"
-                                               "for example: alertnotify=echo %%s | mail -s \"Penguin Alert\" admin@foo.com\n"),
+                                               "for example: alertnotify=echo %%s | mail -s \"PENG Alert\" admin@foo.com\n"),
                                              GetConfigFile().string(),
                                              EncodeBase58(&rand_pwd[0], &rand_pwd[0] + 32)),
             "", CClientUIInterface::MSG_ERROR | CClientUIInterface::SECURE);
@@ -1086,7 +1086,7 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> penguin-cli " + methodname + " " + args + "\n";
+    return "> peng-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)

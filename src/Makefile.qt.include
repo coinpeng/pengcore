@@ -1,34 +1,34 @@
-bin_PROGRAMS += qt/penguin-qt
+bin_PROGRAMS += qt/peng-qt
 EXTRA_LIBRARIES += qt/libbitcoinqt.a
 
-# penguin qt core #
+# peng qt core #
 QT_TS = \
-  qt/locale/penguin_bg.ts \
-  qt/locale/penguin_ca.ts \
-  qt/locale/penguin_cs.ts \
-  qt/locale/penguin_da.ts \
-  qt/locale/penguin_de.ts \
-  qt/locale/penguin_en.ts \
-  qt/locale/penguin_en_US.ts \
-  qt/locale/penguin_es.ts \
-  qt/locale/penguin_fi.ts \
-  qt/locale/penguin_fr_FR.ts \
-  qt/locale/penguin_hr.ts \
-  qt/locale/penguin_it.ts \
-  qt/locale/penguin_ja.ts \
-  qt/locale/penguin_ko_KR.ts \
-  qt/locale/penguin_nl.ts \
-  qt/locale/penguin_pl.ts \
-  qt/locale/penguin_pt.ts \
-  qt/locale/penguin_pt_BR.ts \
-  qt/locale/penguin_ro_RO.ts \
-  qt/locale/penguin_ru.ts \
-  qt/locale/penguin_sk.ts \
-  qt/locale/penguin_sv.ts \
-  qt/locale/penguin_tr.ts \
-  qt/locale/penguin_uk.ts \
-  qt/locale/penguin_zh_CN.ts \
-  qt/locale/penguin_zh_TW.ts
+  qt/locale/peng_bg.ts \
+  qt/locale/peng_ca.ts \
+  qt/locale/peng_cs.ts \
+  qt/locale/peng_da.ts \
+  qt/locale/peng_de.ts \
+  qt/locale/peng_en.ts \
+  qt/locale/peng_en_US.ts \
+  qt/locale/peng_es.ts \
+  qt/locale/peng_fi.ts \
+  qt/locale/peng_fr_FR.ts \
+  qt/locale/peng_hr.ts \
+  qt/locale/peng_it.ts \
+  qt/locale/peng_ja.ts \
+  qt/locale/peng_ko_KR.ts \
+  qt/locale/peng_nl.ts \
+  qt/locale/peng_pl.ts \
+  qt/locale/peng_pt.ts \
+  qt/locale/peng_pt_BR.ts \
+  qt/locale/peng_ro_RO.ts \
+  qt/locale/peng_ru.ts \
+  qt/locale/peng_sk.ts \
+  qt/locale/peng_sv.ts \
+  qt/locale/peng_tr.ts \
+  qt/locale/peng_uk.ts \
+  qt/locale/peng_zh_CN.ts \
+  qt/locale/peng_zh_TW.ts
 
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
@@ -114,16 +114,16 @@ BITCOIN_MM = \
   qt/macnotificationhandler.mm
 
 QT_MOC = \
-  qt/penguin.moc \
+  qt/peng.moc \
   qt/bitcoinamountfield.moc \
   qt/intro.moc \
   qt/overviewpage.moc \
   qt/rpcconsole.moc
 
-QT_QRC_CPP = qt/qrc_penguin.cpp
-QT_QRC = qt/penguin.qrc
-QT_QRC_LOCALE_CPP = qt/qrc_penguin_locale.cpp
-QT_QRC_LOCALE = qt/penguin_locale.qrc
+QT_QRC_CPP = qt/qrc_peng.cpp
+QT_QRC = qt/peng.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_peng_locale.cpp
+QT_QRC_LOCALE = qt/peng_locale.qrc
 
 PROTOBUF_CC = qt/paymentrequest.pb.cc
 PROTOBUF_H = qt/paymentrequest.pb.h
@@ -241,12 +241,12 @@ RES_ICONS = \
   qt/res/icons/tx_input.png \
   qt/res/icons/tx_output.png \
   qt/res/icons/tx_mined.png \
-  qt/res/icons/unit_penguin.png \
-  qt/res/icons/unit_mpenguin.png \
-  qt/res/icons/unit_upenguin.png \
-  qt/res/icons/unit_tpenguin.png \
-  qt/res/icons/unit_tmpenguin.png \
-  qt/res/icons/unit_tupenguin.png
+  qt/res/icons/unit_peng.png \
+  qt/res/icons/unit_mpeng.png \
+  qt/res/icons/unit_upeng.png \
+  qt/res/icons/unit_tpeng.png \
+  qt/res/icons/unit_tmpeng.png \
+  qt/res/icons/unit_tupeng.png
 
 BITCOIN_QT_CPP = \
   qt/bitcoinaddressvalidator.cpp \
@@ -316,7 +316,7 @@ RES_IMAGES = \
   qt/res/images/about.png \
   qt/res/images/splash.png \
   qt/res/images/splash_testnet.png \
-  qt/res/images/penguin_logo_horizontal.png \
+  qt/res/images/peng_logo_horizontal.png \
   qt/res/images/downArrow.png \
   qt/res/images/downArrow_small.png \
   qt/res/images/upArrow_small.png \
@@ -332,7 +332,7 @@ RES_CSS = \
 
 RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
 
-BITCOIN_RC = qt/res/penguin-qt-res.rc
+BITCOIN_RC = qt/res/peng-qt-res.rc
 
 BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
   -I$(builddir)/qt/forms
@@ -352,69 +352,69 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libbitcoinqt_a_OBJECTS) $(qt_penguin_qt_OBJECTS) : | $(QT_MOC)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_peng_qt_OBJECTS) : | $(QT_MOC)
 
 #Generating these with a half-written protobuf header leads to wacky results.
 #This makes sure it's done.
 $(QT_MOC): $(PROTOBUF_H)
 $(QT_MOC_CPP): $(PROTOBUF_H)
 
-# penguin-qt binary #
-qt_penguin_qt_CPPFLAGS = $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+# peng-qt binary #
+qt_peng_qt_CPPFLAGS = $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
   $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
 
-qt_penguin_qt_SOURCES = qt/penguin.cpp
+qt_peng_qt_SOURCES = qt/peng.cpp
 if TARGET_DARWIN
-  qt_penguin_qt_SOURCES += $(BITCOIN_MM)
+  qt_peng_qt_SOURCES += $(BITCOIN_MM)
 endif
 if TARGET_WINDOWS
-  qt_penguin_qt_SOURCES += $(BITCOIN_RC)
+  qt_peng_qt_SOURCES += $(BITCOIN_RC)
 endif
-qt_penguin_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+qt_peng_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
 if ENABLE_WALLET
-qt_penguin_qt_LDADD += $(LIBBITCOIN_WALLET)
+qt_peng_qt_LDADD += $(LIBBITCOIN_WALLET)
 endif
 if ENABLE_ZMQ
-qt_penguin_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+qt_peng_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
-qt_penguin_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBBITCOIN_UNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) $(LIBMEMENV) \
+qt_peng_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBBITCOIN_UNIVALUE) $(LIBBITCOIN_ZEROCOIN) $(LIBLEVELDB) $(LIBMEMENV) \
   $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
   $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-qt_penguin_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_penguin_qt_LIBTOOLFLAGS = --tag CXX
+qt_peng_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_peng_qt_LIBTOOLFLAGS = --tag CXX
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)
 
 .SECONDARY: $(QT_QM)
 
-qt/penguinstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES)
+qt/pengstrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES)
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
 	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) $(PYTHON) ../share/qt/extract_strings_qt.py $^
 
-translate: qt/penguinstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+translate: qt/pengstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts qt/locale/penguin_en.ts
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts qt/locale/peng_en.ts
 
 $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	@test -f $(RCC)
 	@test -f $(@D)/$(<F) || cp -f $< $(@D)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name penguin_locale $(@D)/$(<F) | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name peng_locale $(@D)/$(<F) | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
 $(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(RES_MOVIES) $(PROTOBUF_H)
 	@test -f $(RCC)
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name penguin $< | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name peng $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
 CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno
 
 CLEANFILES += $(CLEAN_QT)
 
-penguin_qt_clean: FORCE
-	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_penguin_qt_OBJECTS) qt/penguin-qt$(EXEEXT) $(LIBBITCOINQT)
+peng_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_peng_qt_OBJECTS) qt/peng-qt$(EXEEXT) $(LIBBITCOINQT)
 
-penguin_qt : qt/penguin-qt$(EXEEXT)
+peng_qt : qt/peng-qt$(EXEEXT)
 
 ui_%.h: %.ui
 	@test -f $(UIC)

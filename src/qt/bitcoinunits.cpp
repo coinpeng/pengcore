@@ -41,11 +41,11 @@ QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
     case PENG:
-        return QString("penguin");
+        return QString("peng");
     case mPENG:
-        return QString("mpenguin");
+        return QString("mpeng");
     case uPENG:
-        return QString::fromUtf8("upenguin");
+        return QString::fromUtf8("upeng");
     default:
         return QString("???");
     }

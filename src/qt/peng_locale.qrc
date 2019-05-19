@@ -1,0 +1,30 @@
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="bg">locale/peng_bg.qm</file>
+        <file alias="ca">locale/peng_ca.qm</file>
+        <file alias="cs">locale/peng_cs.qm</file>
+        <file alias="da">locale/peng_da.qm</file>
+        <file alias="de">locale/peng_de.qm</file>
+        <file alias="en">locale/peng_en.qm</file>
+        <file alias="en_US">locale/peng_en_US.qm</file>
+        <file alias="es">locale/peng_es.qm</file>
+        <file alias="fi">locale/peng_fi.qm</file>
+        <file alias="fr_FR">locale/peng_fr_FR.qm</file>
+        <file alias="hr">locale/peng_hr.qm</file>
+        <file alias="it">locale/peng_it.qm</file>
+        <file alias="ja">locale/peng_ja.qm</file>
+        <file alias="ko_KR">locale/peng_ko_KR.qm</file>
+        <file alias="nl">locale/peng_nl.qm</file>
+        <file alias="pl">locale/peng_pl.qm</file>
+        <file alias="pt">locale/peng_pt.qm</file>
+        <file alias="pt_BR">locale/peng_pt_BR.qm</file>
+        <file alias="ro_RO">locale/peng_ro_RO.qm</file>
+        <file alias="ru">locale/peng_ru.qm</file>
+        <file alias="sk">locale/peng_sk.qm</file>
+        <file alias="sv">locale/peng_sv.qm</file>
+        <file alias="tr">locale/peng_tr.qm</file>
+        <file alias="uk">locale/peng_uk.qm</file>
+        <file alias="zh_CN">locale/peng_zh_CN.qm</file>
+        <file alias="zh_TW">locale/peng_zh_TW.qm</file>
+    </qresource>
+</RCC>

@@ -445,7 +445,7 @@
       <string>Buy PENG</string>
      </property>
      <property name="icon">
-      <iconset resource="../penguin.qrc">
+      <iconset resource="../peng.qrc">
        <normaloff>:/icons/bitcoin</normaloff>:/icons/bitcoin</iconset>
      </property>
     </widget>
@@ -1754,7 +1754,7 @@
       <string>Sell PENG</string>
      </property>
      <property name="icon">
-      <iconset resource="../penguin">
+      <iconset resource="../peng">
        <normaloff>:/icons/bitcoin</normaloff>:/icons/bitcoin</iconset>
      </property>
     </widget>
@@ -2941,10 +2941,10 @@
       </rect>
      </property>
      <property name="text">
-      <string>Generate Penguin Deposit Address</string>
+      <string>Generate PENG Deposit Address</string>
      </property>
      <property name="icon">
-      <iconset resource="../penguin.qrc">
+      <iconset resource="../peng.qrc">
        <normaloff>:/icons/bitcoin</normaloff>:/icons/bitcoin</iconset>
      </property>
     </widget>
@@ -3155,7 +3155,7 @@
        <string notr="true">border: 1px solid #61696c;margin-left:4px;</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="btnConvertPenguin">
+     <widget class="QPushButton" name="btnConvertPENG">
       <property name="geometry">
        <rect>
         <x>260</x>
@@ -3206,7 +3206,7 @@
        <string/>
       </property>
       <property name="pixmap">
-       <pixmap resource="../penguin.qrc">:/icons/transaction_1</pixmap>
+       <pixmap resource="../peng.qrc">:/icons/transaction_1</pixmap>
       </property>
       <property name="scaledContents">
        <bool>true</bool>
@@ -3253,7 +3253,7 @@
       <string>Update API Keys</string>
      </property>
      <property name="icon">
-      <iconset resource="../penguin.qrc">
+      <iconset resource="../peng.qrc">
        <normaloff>:/icons/bitcoin</normaloff>:/icons/bitcoin</iconset>
      </property>
     </widget>
@@ -3408,7 +3408,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="../penguin.qrc"/>
+  <include location="../peng.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -1,7 +1,7 @@
 Multiwallet Qt Development and Integration Strategy
 ===================================================
 
-In order to support loading of multiple wallets in penguin-qt, a few changes in the UI architecture will be needed.
+In order to support loading of multiple wallets in peng-qt, a few changes in the UI architecture will be needed.
 Fortunately, only four of the files in the existing project are affected by this change.
 
 Two new classes have been implemented in two new .h/.cpp file pairs, with much of the functionality that was previously
@@ -10,7 +10,7 @@ implemented in the BitcoinGUI class moved over to these new classes.
 The two existing files most affected, by far, are bitcoingui.h and bitcoingui.cpp, as the BitcoinGUI class will require
 some major retrofitting.
 
-Only requiring some minor changes is penguin.cpp.
+Only requiring some minor changes is peng.cpp.
 
 Finally, two new headers and source files will have to be added to bitcoin-qt.pro.
 
@@ -30,9 +30,9 @@ that takes the place of what used to be centralWidget in BitcoinGUI. The purpose
 refinements of the wallet controls with minimal need for further modifications to BitcoinGUI, thus greatly simplifying
 merges while reducing the risk of breaking top-level stuff.
 
-Changes to penguin.cpp
+Changes to peng.cpp
 ----------------------
-penguin.cpp is the entry point into penguin-qt, and as such, will require some minor modifications to provide hooks for
+peng.cpp is the entry point into peng-qt, and as such, will require some minor modifications to provide hooks for
 multiple wallet support. Most importantly will be the way it instantiates WalletModels and passes them to the
 singleton BitcoinGUI instance called window. Formerly, BitcoinGUI kept a pointer to a single instance of a WalletModel.
 The initial change required is very simple: rather than calling `window.setWalletModel(&walletModel);` we perform the

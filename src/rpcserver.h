@@ -96,7 +96,7 @@ public:
 };
 
 /**
- * Penguin RPC command dispatcher.
+ * PENG RPC command dispatcher.
  */
 class CRPCTable
 {

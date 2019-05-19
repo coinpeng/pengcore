@@ -9,8 +9,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between penguin-cli and penguind)
- * of a given instance of the Penguin system.
+ * CBaseChainParams defines the base parameters (shared between peng-cli and pengd)
+ * of a given instance of the PENG system.
  */
 class CBaseChainParams
 {

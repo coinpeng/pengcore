@@ -1,39 +1,39 @@
-Penguin Core
+PENG Core
 =====================
 
 Setup
 ---------------------
-[Penguin Core](http://Penguincoin.com) is the original Penguin client and it builds the backbone of the network. However, it downloads and stores the entire history of Penguin transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[PENG Core](http://pengcoin.io) is the original PENG client and it builds the backbone of the network. However, it downloads and stores the entire history of PENG transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
-The following are some helpful notes on how to run Penguin on your native platform.
+The following are some helpful notes on how to run PENG on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- bin/32/penguin-qt (GUI, 32-bit) or bin/32/penguind (headless, 32-bit)
-- bin/64/penguin-qt (GUI, 64-bit) or bin/64/penguind (headless, 64-bit)
+- bin/32/peng-qt (GUI, 32-bit) or bin/32/pengd (headless, 32-bit)
+- bin/64/peng-qt (GUI, 64-bit) or bin/64/pengd (headless, 64-bit)
 
 ### Windows
 
-Unpack the files into a directory, and then run penguin-qt.exe.
+Unpack the files into a directory, and then run peng-qt.exe.
 
 ### OSX
 
-Drag Penguin-Qt to your applications folder, and then run Penguin-Qt.
+Drag PENG-Qt to your applications folder, and then run PENG-Qt.
 
 ### Need Help?
 
-* See the documentation at the [Penguin Wiki](https://en.bitcoin.it/wiki/Main_Page) ***TODO***
+* See the documentation at the [PENG Wiki](https://en.bitcoin.it/wiki/Main_Page) ***TODO***
 for help and more information.
-* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php) or on the [Penguin Forum](http://Penguincoin.com/).
-* Join one of our Discord groups [Penguin Discord Groups](https://discord.gg/YcnvMqt).
+* Ask for help on [BitcoinTalk](https://bitcointalk.org/index.php) or on the [PENG Forum](http://PENGcoin.com/).
+* Join one of our Discord groups [PENG Discord Groups](https://discord.gg/YcnvMqt).
 
 Building
 ---------------------
-The following are developer notes on how to build Penguin on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build PENG on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [OSX Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
@@ -41,7 +41,7 @@ The following are developer notes on how to build Penguin on your native platfor
 
 Development
 ---------------------
-The Penguin repo's [root README](https://github.com/eastcoastcrypto/Penguin/blob/master/README.md) contains relevant information on the development process and automated testing.
+The PENG repo's [root README](https://github.com/coinpeng/pengcore/blob/master/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)
@@ -56,7 +56,7 @@ The Penguin repo's [root README](https://github.com/eastcoastcrypto/Penguin/blob
 ### Resources
 
 * Discuss on the [BitcoinTalk](https://bitcointalk.org/index.php?topic=1262920.0) .
-* Join the [Penguin-Dev] Discord groups [Penguin Discord Groups](https://discord.gg/YcnvMqt).
+* Join the [PENG-Dev] Discord groups [PENG Discord Groups](https://discord.gg/YcnvMqt).
 
 ### Miscellaneous
 - [Assets Attribution](assets-attribution.md)

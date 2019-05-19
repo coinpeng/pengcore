@@ -13,7 +13,7 @@ static const int MODEL_UPDATE_DELAY = 250;
 /* AskPassphraseDialog -- Maximum passphrase length */
 static const int MAX_PASSPENGASE_SIZE = 1024;
 
-/* Penguin GUI -- Size of icons in status bar */
+/* PENG GUI -- Size of icons in status bar */
 static const int STATUSBAR_ICONSIZE = 16;
 
 static const bool DEFAULT_SPLASHSCREEN = true;
@@ -48,9 +48,9 @@ static const int MAX_URI_LENGTH = 255;
 /* Number of frames in spinner animation */
 #define SPINNER_FRAMES 35
 
-#define QAPP_ORG_NAME "Penguin"
-#define QAPP_ORG_DOMAIN "penguin.org"
-#define QAPP_APP_NAME_DEFAULT "Penguin-Qt"
-#define QAPP_APP_NAME_TESTNET "Penguin-Qt-testnet"
+#define QAPP_ORG_NAME "PENG"
+#define QAPP_ORG_DOMAIN "peng.org"
+#define QAPP_APP_NAME_DEFAULT "PENG-Qt"
+#define QAPP_APP_NAME_TESTNET "PENG-Qt-testnet"
 
 #endif // BITCOIN_QT_GUICONSTANTS_H

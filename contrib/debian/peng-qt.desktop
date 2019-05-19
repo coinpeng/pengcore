@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=PENG
+Comment=PENG P2P Cryptocurrency
+Comment[fr]=PENG, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=PENG, eşten eşe kriptografik sanal para birimi
+Exec=peng-qt %u
+Terminal=false
+Type=Application
+Icon=peng128
+MimeType=x-scheme-handler/peng;
+Categories=Office;Finance;

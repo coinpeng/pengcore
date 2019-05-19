@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both penguind and penguin-qt, to make it harder for attackers to
+ * for both pengd and peng-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Penguin Core");
+const std::string CLIENT_NAME("PENG Core");
 
 /**
  * Client version number
