@@ -24,7 +24,8 @@ Official repository for PENG source code
 <tr><td>Max Block Size</td><td>2 MB (154 Tx / Sec)</td></tr>
 <tr><td>Min Stake Age</td><td>1 H (60 Blocks)</td></tr>
 <tr><td>Coin Maturity</td><td>10</td></tr>
-<tr><td>Max Coin Supply</td><td>17 147 480 000 PENG</td></tr>
+<tr><td>Max Coin Supply</td><td>16 000 000 000 PENG</td></tr>
+<tr><td>Inflation</td><td>2% average (32 years)</td></tr>
 <tr><td>Ports: wallet / RPC</td><td>3182 / 3181</td></tr>
 </table>
 
@@ -65,136 +66,118 @@ Official repository for PENG source code
   </tr>
   <tr>
     <td>Phase 4</td>
-    <td>525 601 - 1 051 200</td>
-    <td>950</td>
+    <td>525 601 - 1 576 800</td>
+    <td>500</td>
     <td>75%</td>
     <td>25%</td>
   </tr>
   <tr>
     <td>Phase 5</td>
-    <td>1 051 201 - 1 576 800</td>
-    <td>900</td>
+    <td>1 576 801 - 2 628 000</td>
+    <td>490</td>
     <td>80%</td>
     <td>20%</td>
   </tr>
   <tr>
     <td>Phase 6</td>
-    <td>1 576 801 - 2 102 400</td>
-    <td>850</td>
+    <td>2 628 001 - 3 679 200</td>
+    <td>480</td>
     <td>80%</td>
     <td>20%</td>
   </tr>
   <tr>
     <td>Phase 7</td>
-    <td>2 102 401 - 2 628 000</td>
-    <td>800</td>
+    <td>3 679 201 - 4 730 400</td>
+    <td>470</td>
     <td>80%</td>
     <td>20%</td>
   </tr>
   <tr>
     <td>Phase 8</td>
-    <td>2 628 001 - 3 153 600</td>
-    <td>750</td>
+    <td>4 730 401 - 5 781 600</td>
+    <td>460</td>
     <td>80%</td>
     <td>20%</td>
   </tr>
   <tr>
     <td>Phase 9</td>
-    <td>3 153 601 - 3 679 200</td>
-    <td>700</td>
+    <td>5 781 601 - 6 832 800</td>
+    <td>450</td>
     <td>80%</td>
     <td>20%</td>
   </tr>
   <tr>
     <td>Phase 10</td>
-    <td>3 679 201 - 4 204 800</td>
-    <td>650</td>
+    <td>6 832 801 - 7 884 000</td>
+    <td>440</td>
     <td>80%</td>
     <td>20%</td>
   </tr>
   <tr>
     <td>Phase 11</td>
-    <td>4 204 801 - 4 783 000</td>
-    <td>600</td>
+    <td>7 884 001 - 8 935 200</td>
+    <td>420</td>
     <td>80%</td>
     <td>20%</td>
   </tr>
     <tr>
     <td>Phase 12</td>
-    <td>4 783 001 - 5 308 600</td>
-    <td>550</td>
-    <td>80%</td>
-    <td>20%</td>
-  </tr>
-    <tr>
-    <td>Phase 13</td>
-    <td>5 308 601 - 5 834 200</td>
-    <td>500</td>
-    <td>80%</td>
-    <td>20%</td>
-  </tr>
-    <tr>
-    <td>Phase 14</td>
-    <td>5 834 201 - 6 359 800</td>
-    <td>450</td>
-    <td>80%</td>
-    <td>20%</td>
-  </tr>
-    <tr>
-    <td>Phase 15</td>
-    <td>6 359 801 - 6 885 400</td>
+    <td>8 935 001 - 9 986 400</td>
     <td>400</td>
     <td>80%</td>
     <td>20%</td>
   </tr>
     <tr>
-    <td>Phase 16</td>
-    <td>6 885 401 - 7 411 000</td>
+    <td>Phase 13</td>
+    <td>9 986 401 - 11 037 600</td>
+    <td>375</td>
+    <td>80%</td>
+    <td>20%</td>
+  </tr>
+    <tr>
+    <td>Phase 14</td>
+    <td>11 037 601 - 12 088 800</td>
     <td>350</td>
+    <td>80%</td>
+    <td>20%</td>
+  </tr>
+    <tr>
+    <td>Phase 15</td>
+    <td>12 088 801 - 13 140 000</td>
+    <td>325</td>
+    <td>80%</td>
+    <td>20%</td>
+  </tr>
+    <tr>
+    <td>Phase 16</td>
+    <td>13 140 001 - 14 191 200</td>
+    <td>250</td>
     <td>80%</td>
     <td>20%</td>
   </tr>
       <tr>
     <td>Phase 17</td>
-    <td>7 411 001 - 7 936 600</td>
-    <td>300</td>
-    <td>80%</td>
-    <td>20%</td>
-  </tr>
-      <td>Phase 18</td>
-    <td>7 936 601 - 8 462 200</td>
-    <td>250</td>
-    <td>80%</td>
-    <td>20%</td>
-  </tr>
-      <td>Phase 19</td>
-    <td>8 462 201 - 8 987 800</td>
-    <td>200</td>
-    <td>80%</td>
-    <td>20%</td>
-  </tr>
-      <td>Phase 20</td>
-    <td>8 987 801 - 10 039 000</td>
+    <td>14 191 201 - 15 242 400</td>
     <td>150</td>
     <td>80%</td>
     <td>20%</td>
   </tr>
-      <td>Phase 21</td>
-    <td>10 039 001 - 11 090 200</td>
+      <td>Phase 18</td>
+    <td>15 242 401 - 16 293 600</td>
     <td>100</td>
     <td>80%</td>
     <td>20%</td>
   </tr>
-      <td>Phase 22</td>
-    <td>11 090 201 - 7 208 580 000 </td>
+      <td>Phase 19</td>
+    <td>16 293 601 - 16 808 259</td>
     <td>50</td>
     <td>80%</td>
     <td>20%</td>
   </tr>
-      <td>Phase 23</td>
-    <td>7 208 580 001 - infinity</td>
+      <td>Phase 20</td>
+    <td>16 808 259 - infinity</td>
     <td>0</td>
-    <td>0%</td>
-    <td>0%</td>
+    <td>80%</td>
+    <td>20%</td>
   </tr>
 </table>
