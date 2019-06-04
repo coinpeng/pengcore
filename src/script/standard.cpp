@@ -5,6 +5,7 @@
 
 #include "script/standard.h"
 
+#include "main.h"
 #include "pubkey.h"
 #include "script/script.h"
 #include "util.h"
@@ -53,6 +54,8 @@ bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, vector<vector<unsi
         // Sender provides N pubkeys, receivers provides M signatures
         mTemplates.insert(make_pair(TX_MULTISIG, CScript() << OP_SMALLINTEGER << OP_PUBKEYS << OP_SMALLINTEGER << OP_CHECKMULTISIG));
     }
+
+    vSolutionsRet.clear();
 
     // Shortcut for pay-to-script-hash, which are more constrained than the other types:
     // it is always OP_HASH160 20 [20 byte hash] OP_EQUAL
@@ -327,4 +330,13 @@ CScript GetScriptForMultisig(int nRequired, const std::vector<CPubKey>& keys)
         script << ToByteVector(key);
     script << CScript::EncodeOP_N(keys.size()) << OP_CHECKMULTISIG;
     return script;
+}
+
+CScript GetScriptForRawPubKey(const CPubKey& pubKey)
+{
+    return CScript() << std::vector<unsigned char>(pubKey.begin(), pubKey.end()) << OP_CHECKSIG;
+}
+
+bool IsValidDestination(const CTxDestination& dest) {
+    return dest.which() != 0;
 }

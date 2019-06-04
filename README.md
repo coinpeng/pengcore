@@ -1,4 +1,4 @@
-# PENG Core ![alt text](https://github.com/WG91/pengcore/blob/master/share/pixmaps/bitcoin16.png)
+# PENG Core ![alt text](https://github.com/coinpeng/pengcore/blob/master/share/pixmaps/bitcoin16.png)
 Official repository for PENG source code
 
 ### PENG is a fork of [PIVX](https://github.com/PIVX-Project/PIVX) that forked [Dash](https://github.com/dashpay/dash) that forked [Bitcoin](https://github.com/bitcoin/bitcoinp)

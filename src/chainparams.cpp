@@ -137,7 +137,7 @@ public:
         /** Height or Time Based Activations **/
         nLastPOWBlock = 600;
         nModifierUpdateBlock = 999999999;
-        nZerocoinStartHeight = 525600;
+        nZerocoinStartHeight = 1051200;
         nAccumulatorStartHeight = 1;
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
         nBlockRecalculateAccumulators = ~1; //Trigger a recalculation of accumulators
@@ -230,12 +230,12 @@ public:
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // PENG: 1 day
         nTargetSpacing = 1 * 15;  // PENG: 15 seconds
-        nLastPOWBlock = 600;
+        nLastPOWBlock = 100;
         nMaturity = 2;
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 43199500 * COIN;
-        nZerocoinStartHeight = 3;
+        nZerocoinStartHeight = 1051200;
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
         nBlockRecalculateAccumulators = ~1; //Trigger a recalculation of accumulators
         nBlockFirstFraudulent = ~1; //First block that bad serials emerged
@@ -277,7 +277,7 @@ public:
 
         fRequireRPCPassword = true;
         fMiningRequiresPeers = true;
-        fAllowMinDifficultyBlocks = true;
+        fAllowMinDifficultyBlocks = false;
         fDefaultConsistencyChecks = false;
         fRequireStandard = false;
         fMineBlocksOnDemand = false;

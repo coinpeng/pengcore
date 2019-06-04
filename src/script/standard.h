@@ -15,6 +15,7 @@
 
 class CKeyID;
 class CScript;
+class CCoinsViewCache;
 
 /** A reference to a CScript: the Hash160 of its serialization (see script.h) */
 class CScriptID : public uint160
@@ -29,21 +30,21 @@ static const unsigned int MAX_OP_RETURN_RELAY = 83;      //!< bytes (+1 for OP_R
 extern unsigned nMaxDatacarrierBytes;
 
 /**
- * Mandatory script verification flags that all new blocks must comply with for
- * them to be valid. (but old blocks may not comply with) Currently just P2SH,
- * but in the future other flags may be added, such as a soft-fork to enforce
- * strict DER encoding.
- * 
- * Failing one of these tests may trigger a DoS ban - see CheckInputs() for
- * details.
- */
+* Mandatory script verification flags that all new blocks must comply with for
+* them to be valid. (but old blocks may not comply with) Currently just P2SH,
+* but in the future other flags may be added, such as a soft-fork to enforce
+* strict DER encoding.
+* 
+* Failing one of these tests may trigger a DoS ban - see CheckInputs() for
+* details.
+*/
 static const unsigned int MANDATORY_SCRIPT_VERIFY_FLAGS = SCRIPT_VERIFY_P2SH;
 
 /**
- * Standard script verification flags that standard transactions will comply
- * with. However scripts violating these flags may still be present in valid
- * blocks and we must accept those blocks.
- */
+* Standard script verification flags that standard transactions will comply
+* with. However scripts violating these flags may still be present in valid
+* blocks and we must accept those blocks.
+*/
 static const unsigned int STANDARD_SCRIPT_VERIFY_FLAGS = MANDATORY_SCRIPT_VERIFY_FLAGS |
                                                          SCRIPT_VERIFY_DERSIG |
                                                          SCRIPT_VERIFY_STRICTENC |
@@ -73,23 +74,48 @@ public:
 };
 
 /** 
- * A txout script template with a specific destination. It is either:
- *  * CNoDestination: no destination set
- *  * CKeyID: TX_PUBKEYHASH destination
- *  * CScriptID: TX_SCRIPTHASH destination
- *  A CTxDestination is the internal data type encoded in a CBitcoinAddress
+* A txout script template with a specific destination. It is either:
+*  * CNoDestination: no destination set
+*  * CKeyID: TX_PUBKEYHASH destination
+*  * CScriptID: TX_SCRIPTHASH destination
+*  A CTxDestination is the internal data type encoded in a CBitcoinAddress
  */
 typedef boost::variant<CNoDestination, CKeyID, CScriptID> CTxDestination;
 
+/** Check whether a CTxDestination is a CNoDestination. */
+bool IsValidDestination(const CTxDestination& dest);
+
+/** Get the name of a txnouttype as a C string, or nullptr if unknown. */
 const char* GetTxnOutputType(txnouttype t);
 
 bool Solver(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<std::vector<unsigned char> >& vSolutionsRet);
 int ScriptSigArgsExpected(txnouttype t, const std::vector<std::vector<unsigned char> >& vSolutions);
+/**
+* Parse a standard scriptPubKey for the destination address. Assigns result to
+* the addressRet parameter and returns true if successful. For multisig
+* scripts, instead use ExtractDestinations. Currently only works for P2PK,
+* P2PKH, P2SH, P2WPKH, and P2WSH scripts.
+*/
 bool IsStandard(const CScript& scriptPubKey, txnouttype& whichType);
 bool ExtractDestination(const CScript& scriptPubKey, CTxDestination& addressRet);
+/**
+* Parse a standard scriptPubKey with one or more destination addresses. For
+* multisig scripts, this populates the addressRet vector with the pubkey IDs
+* and nRequiredRet with the n required to spend. For other destinations,
+* addressRet is populated with a single value and nRequiredRet is set to 1.
+* Returns true if successful. Currently does not extract address from
+* pay-to-witness scripts.
+*
+* Note: this function confuses destinations (a subset of CScripts that are
+* encodable as an address) with key identifiers (of keys involved in a
+* CScript), and its use should be phased out.
+*/
 bool ExtractDestinations(const CScript& scriptPubKey, txnouttype& typeRet, std::vector<CTxDestination>& addressRet, int& nRequiredRet);
 
 CScript GetScriptForDestination(const CTxDestination& dest);
 CScript GetScriptForMultisig(int nRequired, const std::vector<CPubKey>& keys);
+
+/** Generate a P2PK script for the given pubkey. */
+CScript GetScriptForRawPubKey(const CPubKey& pubkey);
 
 #endif // BITCOIN_SCRIPT_STANDARD_H

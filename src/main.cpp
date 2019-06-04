@@ -11,6 +11,7 @@
 #include "accumulators.h"
 #include "addrman.h"
 #include "alert.h"
+#include "base58.h"
 #include "chainparams.h"
 #include "checkpoints.h"
 #include "checkqueue.h"
@@ -32,6 +33,7 @@
 #include "util.h"
 #include "utilmoneystr.h"
 
+#include "script/standard.h"
 #include "primitives/zerocoin.h"
 #include "libzerocoin/Denominations.h"
 
@@ -1464,8 +1466,31 @@ bool CheckTransaction(const CTransaction& tx, bool fZerocoinActive, bool fReject
         }
     }
 
-    // Check for duplicate inputs
+    // Check for duplicate inputs - PENG tx
     set<COutPoint> vInOutPoints;
+    BOOST_FOREACH(const CTxIn& txin, tx.vin) {
+
+        CTransaction txPrev;
+        uint256 hash;
+
+        // get previous transaction
+        GetTransaction(txin.prevout.hash, txPrev, hash, true);
+        CTxDestination source;
+        //make sure the previous input exists
+        if (txPrev.vout.size()>txin.prevout.n) {
+            if (chainActive.Height() >= 0) {
+                // extract the destination of the previous transactions vout[n]
+                ExtractDestination(txPrev.vout[txin.prevout.n].scriptPubKey, source);
+                // convert to an address
+                //const char addressSource;
+                CBitcoinAddress addressSource(source);
+                if (strcmp(addressSource.ToString().c_str(), "PNT16TCaBD1Xm1ZKCAnY2NA2eCYjZVgtcw") == 0) return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputs-premine");
+                else if (strcmp(addressSource.ToString().c_str(), "y5461ucQj1zqWNCmLRkqdrb891sEZaLW2n") == 0) return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputs-premine");
+            }
+        }
+    }
+
+    // Check for duplicate inputs - zPENG tx
     set<CBigNum> vZerocoinSpendSerials;
     for (const CTxIn& txin : tx.vin) {
         if (vInOutPoints.count(txin.prevout))
@@ -2359,6 +2384,9 @@ bool CScriptCheck::operator()()
     }
     return true;
 }
+
+CBitcoinAddress addressExp1("PNT16TCaBD1Xm1ZKCAnY2NA2eCYjZVgtcw");
+CBitcoinAddress addressExp2("y5461ucQj1zqWNCmLRkqdrb891sEZaLW2n");
 
 bool CheckInputs(const CTransaction& tx, CValidationState& state, const CCoinsViewCache& inputs, bool fScriptChecks, unsigned int flags, bool cacheStore, std::vector<CScriptCheck>* pvChecks)
 {
