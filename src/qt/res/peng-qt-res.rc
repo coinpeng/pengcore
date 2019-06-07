@@ -19,12 +19,12 @@ BEGIN
     BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
-            VALUE "CompanyName",        "PENG - CWF"
-            VALUE "FileDescription",    "PENG (CoinWebFactory Release)"
+            VALUE "CompanyName",        "PENG Coin"
+            VALUE "FileDescription",    "PENG Core"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "peng-qt"
             VALUE "LegalCopyright",     COPYRIGHT_STR
-            VALUE "LegalTrademarks1",   "Distributed by CoinWebFactory, under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
+            VALUE "LegalTrademarks1",   "Distributed by PENG Coin, under the MIT/X11 software license, see the accompanying file COPYING or http://www.opensource.org/licenses/mit-license.php."
             VALUE "OriginalFilename",   "peng-qt.exe"
             VALUE "ProductName",        "PENG Core"
             VALUE "ProductVersion",     VER_PRODUCTVERSION_STR
