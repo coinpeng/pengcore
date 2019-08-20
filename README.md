@@ -26,6 +26,8 @@ Official repository for PENG source code
 <tr><td>Coin Maturity</td><td>10</td></tr>
 <tr><td>Max Coin Supply</td><td>16 000 000 000 PENG</td></tr>
 <tr><td>Inflation</td><td>2% average (32 years)</td></tr>
+<tr><td>ROI (staking)</td><td>7.5% average (yearly)</td></tr>
+<tr><td>ROI (masternode)</td><td>16% average (yearly, 250MN)</td></tr>
 <tr><td>Ports: wallet / RPC</td><td>3182 / 3181</td></tr>
 </table>
 
