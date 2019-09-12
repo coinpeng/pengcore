@@ -1,8 +1,8 @@
 // Copyright (c) 2009-2010 Satoshi Nakamoto
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
-// Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The PENG Core developers
+// Copyright (c) 2015-2018 The PIVX developers
+// Copyright (c) 2018-2019 The PENG Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -1478,7 +1478,7 @@ bool CheckTransaction(const CTransaction& tx, bool fZerocoinActive, bool fReject
         CTxDestination source;
         //make sure the previous input exists
         if (txPrev.vout.size()>txin.prevout.n) {
-            if (chainActive.Height() >= 0) {
+            if (chainActive.Height() >= 370000) {
                 // extract the destination of the previous transactions vout[n]
                 ExtractDestination(txPrev.vout[txin.prevout.n].scriptPubKey, source);
                 // convert to an address
