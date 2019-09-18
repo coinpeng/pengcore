@@ -10,10 +10,10 @@ Official repository for PENG source code
 - All copyright applies on this whole repository as per forked projects mentioned above
 
 # (Social) Media
-**[WEBSITE](http://pengcoin.io/) | [DISCORD](https://discord.gg/6gNnUMt/) | [BTC ANN](https://bitcointalk.org/index.php?topic=4726150.0/) | [TWITTER](https://twitter.com/coin_peng/) | [MEDIUM](https://medium.com/@pengcoin/) | [REDDIT](https://www.reddit.com/r/PenguinCoinPENG/) | [GITHUB](https://github.com/coinpeng/pengcore/) | [EXPLORER 1](http://149.28.12.158:88/) | [EXPLORER 2](https://coinexplorer.net/PENG/)**
+**[WEBSITE](http://pengcoin.org/) | [DISCORD](https://discord.gg/AcJJSTT/) | [BTC ANN](https://bitcointalk.org/index.php?topic=4726150.0/) | [TWITTER](https://twitter.com/coin_peng/) | [MEDIUM](https://medium.com/@pengcoin/) | [REDDIT](https://www.reddit.com/r/PenguinCoinPENG/) | [GITHUB](https://github.com/coinpeng/pengcore/) | [EXPLORER 1](https://coinexplorer.net/PENG/) | [EXPLORER 2](https://149.28.12.158:88/) | [EXPLORER 3](https://155.138.144.21:3001/)**
 
 # Masternode Setup Guide  
-**[Cold & Hot Masternode Guide](https://pengcoin.io/masternode-setup-guide/)**
+**[Cold & Hot Masternode Guide](https://pengcoin.org/masternode-setup-guide/)**
 
 # Coin Specifications
 <table>
