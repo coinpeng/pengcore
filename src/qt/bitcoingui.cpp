@@ -92,7 +92,7 @@ BitcoinGUI::BitcoinGUI(const NetworkStyle* networkStyle, QWidget* parent) : QMai
                                                                             multisigSignAction(0),
                                                                             aboutAction(0),
                                                                             receiveCoinsAction(0),
-                                                                            privacyAction(0),
+                                                                            /* privacyAction(0),  */ // zerocoin disable
                                                                             optionsAction(0),
                                                                             toggleHideAction(0),
                                                                             encryptWalletAction(0),
@@ -331,7 +331,7 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
 #endif
     tabGroup->addAction(historyAction);
 
-    privacyAction = new QAction(QIcon(":/icons/privacy"), tr("&Privacy"), this);
+    /* privacyAction = new QAction(QIcon(":/icons/privacy"), tr("&Privacy"), this);
     privacyAction->setStatusTip(tr("Privacy Actions for zPENG"));
     privacyAction->setToolTip(privacyAction->statusTip());
     privacyAction->setCheckable(true);
@@ -340,7 +340,7 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
 #else
     privacyAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_5));
 #endif
-    tabGroup->addAction(privacyAction);
+    tabGroup->addAction(privacyAction); */ // zerocoin disable
 
 #ifdef ENABLE_WALLET
 
@@ -368,8 +368,8 @@ void BitcoinGUI::createActions(const NetworkStyle* networkStyle)
     connect(sendCoinsAction, SIGNAL(triggered()), this, SLOT(gotoSendCoinsPage()));
     connect(receiveCoinsAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(receiveCoinsAction, SIGNAL(triggered()), this, SLOT(gotoReceiveCoinsPage()));
-    connect(privacyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
-    connect(privacyAction, SIGNAL(triggered()), this, SLOT(gotoPrivacyPage()));
+    /* connect(privacyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
+    connect(privacyAction, SIGNAL(triggered()), this, SLOT(gotoPrivacyPage())); */ // zerocoin disable
     connect(historyAction, SIGNAL(triggered()), this, SLOT(showNormalIfMinimized()));
     connect(historyAction, SIGNAL(triggered()), this, SLOT(gotoHistoryPage()));
 #endif // ENABLE_WALLET
@@ -548,9 +548,9 @@ void BitcoinGUI::createToolBars()
         toolbar->addAction(overviewAction);
         toolbar->addAction(sendCoinsAction);
         toolbar->addAction(receiveCoinsAction);
-        toolbar->addAction(privacyAction);
+        /* toolbar->addAction(privacyAction); */ // zerocoin disable
         toolbar->addAction(historyAction);
-        toolbar->addAction(privacyAction);
+        /* toolbar->addAction(privacyAction); */ // zerocoin disable
         QSettings settings;
         if (settings.value("fShowMasternodesTab").toBool()) {
             toolbar->addAction(masternodeAction);
@@ -640,7 +640,7 @@ void BitcoinGUI::setWalletActionsEnabled(bool enabled)
     overviewAction->setEnabled(enabled);
     sendCoinsAction->setEnabled(enabled);
     receiveCoinsAction->setEnabled(enabled);
-    privacyAction->setEnabled(enabled);
+    /* privacyAction->setEnabled(enabled); */ // zerocoin disable
     historyAction->setEnabled(enabled);
     QSettings settings;
     if (settings.value("fShowMasternodesTab").toBool()) {
@@ -697,7 +697,7 @@ void BitcoinGUI::createTrayIconMenu()
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(sendCoinsAction);
     trayIconMenu->addAction(receiveCoinsAction);
-    trayIconMenu->addAction(privacyAction);
+    /* trayIconMenu->addAction(privacyAction); */ // zerocoin disable
     trayIconMenu->addSeparator();
     trayIconMenu->addAction(signMessageAction);
     trayIconMenu->addAction(verifyMessageAction);
@@ -793,11 +793,11 @@ void BitcoinGUI::gotoReceiveCoinsPage()
     if (walletFrame) walletFrame->gotoReceiveCoinsPage();
 }
 
-void BitcoinGUI::gotoPrivacyPage()
+/* void BitcoinGUI::gotoPrivacyPage()
 {
     privacyAction->setChecked(true);
     if (walletFrame) walletFrame->gotoPrivacyPage();
-}
+} */ // zerocoin disable
 
 void BitcoinGUI::gotoSendCoinsPage(QString addr)
 {

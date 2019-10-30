@@ -133,12 +133,12 @@ public:
         /** Height or Time Based Activations **/
         nLastPOWBlock = 600;
         nModifierUpdateBlock = 999999999;
-        nZerocoinStartHeight = 1051200;
-        nAccumulatorStartHeight = 1;
+        nZerocoinStartHeight = INT_MAX-1; //Never Activated
+        nAccumulatorStartHeight = INT_MAX-1; //Never Activated
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
-        nBlockRecalculateAccumulators = ~1; //Trigger a recalculation of accumulators
-        nBlockFirstFraudulent = ~1; //First block that bad serials emerged
-        nBlockLastGoodCheckpoint = ~1; //Last valid accumulator checkpoint
+        nBlockRecalculateAccumulators = INT_MAX-1; //Never Activated
+        nBlockFirstFraudulent = INT_MAX-1; //Never Activated
+        nBlockLastGoodCheckpoint = INT_MAX-1; //Never Activated
         const char* pszTimestamp = "Courage does not always roar. Sometimes courage is the quiet voice at the end of the day saying, I will try again tomorrow - 2018";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
@@ -231,11 +231,11 @@ public:
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
         nMaxMoneyOut = 43199500 * COIN;
-        nZerocoinStartHeight = 1051200;
+        nZerocoinStartHeight = INT_MAX-1; //Never Activated
         nBlockEnforceSerialRange = 1; //Enforce serial range starting this block
-        nBlockRecalculateAccumulators = ~1; //Trigger a recalculation of accumulators
-        nBlockFirstFraudulent = ~1; //First block that bad serials emerged
-        nBlockLastGoodCheckpoint = ~1; //Last valid accumulator checkpoint
+        nBlockRecalculateAccumulators = INT_MAX-1; //Never Activated
+        nBlockFirstFraudulent = INT_MAX-1; //Never Activated
+        nBlockLastGoodCheckpoint = INT_MAX-1; //Never Activated
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1515616140;
