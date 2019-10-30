@@ -3644,7 +3644,7 @@ void CWallet::AutoZeromint()
         LogPrintf("CWallet::AutoZeromint(): Nothing minted because either not enough funds available or the requested denomination size (%d) is not yet reached.\n", nPreferredDenom);
     }
 	// **** Zero Disable End **** */
-	return error("%s: Zerocoin is disabled", __func__);
+	return;
 }
 
 void CWallet::AutoCombineDust()
