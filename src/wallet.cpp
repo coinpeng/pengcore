@@ -825,7 +825,11 @@ isminetype CWallet::IsMine(const CTxIn& txin) const
 
 bool CWallet::IsMyZerocoinSpend(const CBigNum& bnSerial) const
 {
+	/* // **** Zero Disable Start ****
     return CWalletDB(strWalletFile).ReadZerocoinSpendSerialEntry(bnSerial);
+	// **** Zero Disable End **** */
+
+	return false;
 }
 
 CAmount CWallet::GetDebit(const CTxIn& txin, const isminefilter& filter) const
@@ -1286,6 +1290,7 @@ CAmount CWallet::GetBalance() const
 
 CAmount CWallet::GetZerocoinBalance(bool fMatureOnly) const
 {
+	/* // **** Zero Disable Start ****
     CAmount nTotal = 0;
     //! zerocoin specific fields
     std::map<libzerocoin::CoinDenomination, unsigned int> myZerocoinSupply;
@@ -1311,15 +1316,23 @@ CAmount CWallet::GetZerocoinBalance(bool fMatureOnly) const
     if (nTotal < 0 ) nTotal = 0; // Sanity never hurts
 
     return nTotal;
+	// **** Zero Disable End **** */
+
+    return 0;
 }
 
 CAmount CWallet::GetImmatureZerocoinBalance() const
 {
-    return GetZerocoinBalance(false) - GetZerocoinBalance(true);
+    /* 	// **** Zero Disable Start ****
+	return GetZerocoinBalance(false) - GetZerocoinBalance(true);
+	// **** Zero Disable End **** */
+
+	return 0;
 }
 
 CAmount CWallet::GetUnconfirmedZerocoinBalance() const
 {
+    /* 	// **** Zero Disable Start ****
     CAmount nUnconfirmed = 0;
     CWalletDB walletdb(pwalletMain->strWalletFile);
     list<CZerocoinMint> listMints = walletdb.ListMintedCoins(true, false, true);
@@ -1349,6 +1362,9 @@ CAmount CWallet::GetUnconfirmedZerocoinBalance() const
     if (nUnconfirmed < 0 ) nUnconfirmed = 0; // Sanity never hurts
 
     return nUnconfirmed;
+	// **** Zero Disable End **** */
+
+	return 0;
 }
 
 CAmount CWallet::GetUnlockedCoins() const
@@ -3526,6 +3542,7 @@ bool CWallet::GetDestData(const CTxDestination& dest, const std::string& key, st
 // CWallet::AutoZeromint() gets called with each new incoming block
 void CWallet::AutoZeromint()
 {
+	/*	// **** Zero Disable Start ****
     // Don't bother Autominting if Zerocoin Protocol isn't active
     if (GetAdjustedTime() > GetSporkValue(SPORK_16_ZEROCOIN_MAINTENANCE_MODE)) return;
 
@@ -3626,6 +3643,8 @@ void CWallet::AutoZeromint()
     else {
         LogPrintf("CWallet::AutoZeromint(): Nothing minted because either not enough funds available or the requested denomination size (%d) is not yet reached.\n", nPreferredDenom);
     }
+	// **** Zero Disable End **** */
+	return error("%s: Zerocoin is disabled", __func__);
 }
 
 void CWallet::AutoCombineDust()
@@ -3953,6 +3972,7 @@ bool CMerkleTx::IsTransactionLockTimedOut() const
 
 bool CWallet::CreateZerocoinMintTransaction(const CAmount nValue, CMutableTransaction& txNew, vector<CZerocoinMint>& vMints, CReserveKey* reservekey, int64_t& nFeeRet, std::string& strFailReason, const CCoinControl* coinControl, const bool isZCSpendChange)
 {
+	/*	// **** Zero Disable Start ****
     if (IsLocked()) {
         strFailReason = _("Error: Wallet locked, unable to create transaction!");
         LogPrintf("SpendZerocoin() : %s", strFailReason.c_str());
@@ -4057,10 +4077,14 @@ bool CWallet::CreateZerocoinMintTransaction(const CAmount nValue, CMutableTransa
     }
 
     return true;
+		// **** Zero Disable End **** */
+
+	return false;
 }
 
 bool CWallet::MintToTxIn(CZerocoinMint zerocoinSelected, int nSecurityLevel, const uint256& hashTxOut, CTxIn& newTxIn, CZerocoinSpendReceipt& receipt)
 {
+	/*	// **** Zero Disable Start ****
     // Default error status if not changed below
     receipt.SetStatus("Transaction Mint Started", ZPENG_TXMINT_GENERAL);
 
@@ -4156,10 +4180,14 @@ bool CWallet::MintToTxIn(CZerocoinMint zerocoinSelected, int nSecurityLevel, con
     receipt.SetStatus("Spend Valid", ZPENG_SPEND_OKAY); // Everything okay
 
     return true;
+	// **** Zero Disable End **** */
+
+	return false;
 }
 
 bool CWallet::CreateZerocoinSpendTransaction(CAmount nValue, int nSecurityLevel, CWalletTx& wtxNew, CReserveKey& reserveKey, CZerocoinSpendReceipt& receipt, vector<CZerocoinMint>& vSelectedMints, vector<CZerocoinMint>& vNewMints, bool fMintChange,  bool fMinimizeChange, CBitcoinAddress* address)
 {
+   	/*	// **** Zero Disable Start ****
     // Check available funds
     int nStatus = ZPENG_TRX_FUNDS_PROBLEMS;
     if (nValue > GetZerocoinBalance(true)) {
@@ -4342,6 +4370,8 @@ bool CWallet::CreateZerocoinSpendTransaction(CAmount nValue, int nSecurityLevel,
     receipt.SetStatus("Transaction Created", ZPENG_SPEND_OKAY); // Everything okay
 
     return true;
+		// **** Zero Disable End **** */
+	return false;
 }
 
 string CWallet::ResetMintZerocoin(bool fExtendedSearch)

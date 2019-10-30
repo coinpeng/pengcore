@@ -195,9 +195,9 @@ void OptionsDialog::setMapper()
     mapper->addMapping(ui->threadsScriptVerif, OptionsModel::ThreadsScriptVerif);
     mapper->addMapping(ui->databaseCache, OptionsModel::DatabaseCache);
     // Zerocoin mint percentage
-    mapper->addMapping(ui->zeromintPercentage, OptionsModel::ZeromintPercentage);
+    /* mapper->addMapping(ui->zeromintPercentage, OptionsModel::ZeromintPercentage); */ // zerocoin disable
     // Zerocoin preferred denomination
-    mapper->addMapping(ui->preferredDenom, OptionsModel::ZeromintPrefDenom);
+    /* mapper->addMapping(ui->preferredDenom, OptionsModel::ZeromintPrefDenom); */ // zerocoin disable
 
     /* Wallet */
     mapper->addMapping(ui->spendZeroConfChange, OptionsModel::SpendZeroConfChange);

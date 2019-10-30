@@ -4027,12 +4027,14 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 nHeight = (*mi).second->nHeight + 1;
         }
 
+	/* **** Zero Disable Start ****
         // Version 4 header must be used after Params().Zerocoin_StartHeight(). And never before.
         if (nHeight > Params().Zerocoin_StartHeight()) {
             if(block.nVersion < Params().Zerocoin_HeaderVersion())
                 return state.DoS(50, error("CheckBlockHeader() : block version must be above 4 after ZerocoinStartHeight"),
                 REJECT_INVALID, "block-version");
         }
+        **** Zero Disable End **** */
 
         // PENG
         // It is entierly possible that we don't have enough data and this could fail
