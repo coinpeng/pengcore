@@ -226,10 +226,10 @@ QT_TRANSLATE_NOOP("peng-core", ""
 QT_TRANSLATE_NOOP("peng-core", ""
 "You must specify a masternodeprivkey in the configuration. Please see "
 "documentation for help."),
-QT_TRANSLATE_NOOP("peng-core", "( 3182 could be used only on mainnet)"),
+QT_TRANSLATE_NOOP("peng-core", "(3182 could be used only on mainnet)"),
 QT_TRANSLATE_NOOP("peng-core", "(default: %s)"),
 QT_TRANSLATE_NOOP("peng-core", "(default: 1)"),
-QT_TRANSLATE_NOOP("peng-core", "(must be  3182 for mainnet)"),
+QT_TRANSLATE_NOOP("peng-core", "(must be 3182 for mainnet)"),
 QT_TRANSLATE_NOOP("peng-core", "<category> can be:"),
 QT_TRANSLATE_NOOP("peng-core", "Accept command line and JSON-RPC commands"),
 QT_TRANSLATE_NOOP("peng-core", "Accept connections from outside (default: 1 if no -proxy or -connect)"),

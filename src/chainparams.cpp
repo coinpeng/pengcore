@@ -116,7 +116,7 @@ public:
         pchMessageStart[2] = 0x15;
         pchMessageStart[3] = 0x51;
         vAlertPubKey = ParseHex("049a640185d525a4471e031816f56be67720141fcaa76d3feabc8080ffd98f1c06b6ff77ca07c5f61c1e3ecc15b6947d9e0d3d4df78e7c09d0cc0c8956ad87d4e1");
-        nDefaultPort =  3182;
+        nDefaultPort = 3182;
         bnProofOfWorkLimit = ~uint256(0) >> 20; // PENG starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
