@@ -1582,6 +1582,11 @@ void StartNode(boost::thread_group& threadGroup)
         if (!adb.Read(addrman))
             LogPrintf("Invalid or missing peers.dat; recreating\n");
     }
+	
+	// Initialize random numbers. Even when rand() is only usable for trivial use-cases most nodes should have a different
+    // seed after all the file-IO done at this point. Should be good enough even when nodes are started via scripts.
+    srand(time(NULL));
+	
     LogPrintf("Loaded %i addresses from peers.dat  %dms\n",
         addrman.size(), GetTimeMillis() - nStart);
     fAddressesInitialized = true;

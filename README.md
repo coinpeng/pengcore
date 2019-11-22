@@ -4,7 +4,7 @@ Official repository for PENG source code
 ### PENG is a fork of [PIVX](https://github.com/PIVX-Project/PIVX) that forked [Dash](https://github.com/dashpay/dash) that forked [Bitcoin](https://github.com/bitcoin/bitcoinp)
 
 - PENG Coin is a humanitarian-oriented cryptocurrency that’s changing the future of electronic donations for global aid. The coin utilizes fast block speeds, has almost zero costs, and boasts competitive privacy features. PENG Coin is a cryptocurrency founded on the principles of sustainable giving. PENG aims to foster a community of forward-thinking humanitarians who value generosity and want a better vehicle for donations: a cryptocurrency that reflects shared values of self-reliance, community, and efficiency.
-- PENG coin is an open source public blockchain platform, which means that it is open for public participation at any level and has an open source code that the PENG community maintains. This is a platform that is built on the “Unspent Transaction Output” model common to most blockchains. PENG Coin is Proof of Stake (PoS) based and has a Decentralized Governance Protocol (DGP) that allows for the modification of specific blockchain settings through the use of smart contracts. It is one of the more effective public blockchain platforms supporting instantaneous value transfer at zero risks.
+- PENG Coin is an open source public blockchain platform, which means that it is open for public participation at any level and has an open source code that the PENG community maintains. This is a platform that is built on the “Unspent Transaction Output” model common to most blockchains. PENG Coin is Proof of Stake (PoS) based and has a Decentralized Governance Protocol (DGP) that allows for the modification of specific blockchain settings through the use of smart contracts. It is one of the more effective public blockchain platforms supporting instantaneous value transfer at zero risks.
 - Through a growing number of charity partnerships, PENG coin wants to reduce the incidence of fraud by cutting out middlemen and the risks inherent to fiat currency so more purchasing power can go directly to each cause. PENG’s base code and add-ons allow for simpler, reward-based humanitarian support. It’s now easier, safer, and faster to give to your favorite causes.
 - Decentralized blockchain voting providing for consensus based advancement of the current MasterNode technology used to secure the network and provide the above features, each MasterNode is secured with a collateral.
 - All copyright applies on this whole repository as per forked projects mentioned above
@@ -20,9 +20,9 @@ Official repository for PENG source code
 <tr><td>Ticker</td><td>PENG</td></tr>
 <tr><td>Coin Type</td><td>MasterNode / PoS</td></tr>
 <tr><td>Algo</td><td>X11</td></tr>
-<tr><td>Block Time</td><td>60 Seconds (1440 Blocks / Day)</td></tr>
-<tr><td>Max Block Size</td><td>2 MB (154 Tx / Sec)</td></tr>
-<tr><td>Min Stake Age</td><td>1 H (60 Blocks)</td></tr>
+<tr><td>Block Time</td><td>60 Seconds (1440 blocks / day)</td></tr>
+<tr><td>Max Block Size</td><td>2 MB (154 tx / Sec)</td></tr>
+<tr><td>Min Stake Age</td><td>1 H (60 blocks)</td></tr>
 <tr><td>Coin Maturity</td><td>10</td></tr>
 <tr><td>Max Coin Supply</td><td>16 000 000 000 PENG</td></tr>
 <tr><td>Inflation</td><td>2% average (32 years)</td></tr>

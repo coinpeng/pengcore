@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
-// Copyright (c) 2017 The PENG Core developers
+// Copyright (c) 2017-2020 The PENG Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -59,13 +59,12 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (200000, uint256("0x0a229a0501085d5542b17dea702ea9843130eb2419faaf3626829b7c90a867ca"))
     (300000, uint256("0x40c6683572603c1e1850525abba8e3509fc4b010b51a9ef5a218678c614fd07f"))
     (400002, uint256("0xa3fd9919e0b10bd4f06ac13de8ee669a298cb17ef787e28d1146c6c8f7ae6159"))
-    (430000, uint256("0xb8380c6106edec48d1761fce7dc12a88c4d90bab6a55c8620a461c8f7377bec9"))
-    (460000, uint256("0xfdee2dc04b05f9f855f89f7f804092cfbf28dd7429c483c7b9016de4c3555f76"))
-    (480000, uint256("0x1e9d03d4dc8724287af39ab3e1a8947d0cd5253555c830bbb6172ff0103ce309"))
     (500000, uint256("0x4e3f84e88538ce8c18b12cfae6e88f2516e64ec919da4a008bbd98c3f61ffa89"))
-    (510000, uint256("0xd8a935702de82683b1f18ae2b0ebdddc45196afb2122d9ad0ec653ebe22d6b45"))
-    (520000, uint256("0x81f986f5da02d321cb8fae4aea1660fef7cae8f8abe214171b842728e52d6a46"))
-    (525602, uint256("0x50bf8dc88929ca203412f188a27438d96085d06bf9cf10c2d1a5483cef74b27c"));
+    (550002, uint256("0x771ea2a2962134e77b98f1dbeb5f3e95e996fd97cef9f292882fa171d80e385a"))
+    (600002, uint256("0x06129c0f826ef548083f745ca53f909accd191b654106e98b80c284f93184523"))
+    (650001, uint256("0x6469feef22d2dbf07ffb24e4499aee12df8e8d82be4c30119bf043354ca9df1d"))
+    (700002, uint256("0xf668c3cd62fd8ba58d33201ca59a63f0f9b648df0687071adb84ae1a2ad27b2d"))
+    (705000, uint256("0x12d329ab48f68047391f45e69867bf843f95c8f76da281b0857d2cb0fe605805"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
     1557997119, // * UNIX timestamp of last checkpoint block

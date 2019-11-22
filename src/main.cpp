@@ -2,7 +2,7 @@
 // Copyright (c) 2009-2014 The Bitcoin developers
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2018 The PIVX developers
-// Copyright (c) 2018-2019 The PENG Core developers
+// Copyright (c) 2018-2020 The PENG Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -92,9 +92,9 @@ int64_t nReserveBalance = 0;
  * so it's still 10 times lower comparing to bitcoin.
  */
 CFeeRate minRelayTxFee = CFeeRate(10000);
-
+ 
 CTxMemPool mempool(::minRelayTxFee);
-
+ 
 struct COrphanTx {
     CTransaction tx;
     NodeId fromPeer;
@@ -110,9 +110,9 @@ static void CheckBlockIndex();
 
 /** Constant stuff for coinbase transactions we create: */
 CScript COINBASE_FLAGS;
-
+ 
 const string strMessageMagic = "DarkNet Signed Message:\n";
-
+ 
 // Internal stuff
 namespace
 {
@@ -136,9 +136,9 @@ struct CBlockIndexWorkComparator {
         return false;
     }
 };
-
+ 
 CBlockIndex* pindexBestInvalid;
-
+ 
 /**
      * The set of all CBlockIndex entries with BLOCK_VALID_TRANSACTIONS (for itself and all ancestors) and
      * as good as our current tip or better. Entries may be failed, though.
@@ -164,7 +164,7 @@ uint32_t nBlockSequenceId = 1;
 /**
      * Sources of received blocks, to be able to send them reject messages or ban
      * them, if processing happens afterwards. Protected by cs_main.
-     */
+     */ 
 map<uint256, NodeId> mapBlockSource;
 
 /** Blocks that are in flight, and that are in the queue to be downloaded. Protected by cs_main. */
@@ -173,15 +173,15 @@ struct QueuedBlock {
     CBlockIndex* pindex;        //! Optional.
     int64_t nTime;              //! Time of "getdata" request in microseconds.
     int nValidatedQueuedBefore; //! Number of blocks queued with validated headers (globally) at the time this one is requested.
-    bool fValidatedHeaders;     //! Whether this block has validated headers at the time of request.
+    bool fValidatedHeaders;     //! Whether this block has validated headers at the time of request. 
 };
 map<uint256, pair<NodeId, list<QueuedBlock>::iterator> > mapBlocksInFlight;
 
 /** Number of blocks in flight with validated headers. */
-int nQueuedValidatedHeaders = 0;
+int nQueuedValidatedHeaders = 0; 
 
 /** Number of preferable block download peers. */
-int nPreferredDownload = 0;
+int nPreferredDownload = 0; 
 
 /** Dirty block index entries. */
 set<CBlockIndex*> setDirtyBlockIndex;
@@ -198,8 +198,8 @@ set<int> setDirtyFileInfo;
 // These functions dispatch to one or all registered wallets
 
 namespace
-{
-struct CMainSignals {
+{ 
+struct CMainSignals { 
     /** Notifies listeners of updated transaction data (transaction, and optionally the block it is found in. */
     boost::signals2::signal<void(const CTransaction&, const CBlock*)> SyncTransaction;
     /** Notifies listeners of an erased transaction (currently disabled, requires transaction replacement). */
@@ -212,13 +212,13 @@ struct CMainSignals {
     boost::signals2::signal<void(const uint256&)> Inventory;
     /** Tells listeners to broadcast their data. */
     boost::signals2::signal<void()> Broadcast;
-    /** Notifies listeners of a block validation result */
+    /** Notifies listeners of a block validation result */ 
     boost::signals2::signal<void(const CBlock&, const CValidationState&)> BlockChecked;
 } g_signals;
 
 } // anon namespace
 
-void RegisterValidationInterface(CValidationInterface* pwalletIn)
+void RegisterValidationInterface(CValidationInterface* pwalletIn) 
 {
     g_signals.SyncTransaction.connect(boost::bind(&CValidationInterface::SyncTransaction, pwalletIn, _1, _2));
 // XX42 g_signals.EraseTransaction.connect(boost::bind(&CValidationInterface::EraseFromWallet, pwalletIn, _1));
@@ -1438,8 +1438,8 @@ bool CheckTransaction(const CTransaction& tx, bool fZerocoinActive, bool fReject
             return state.DoS(100, error("CheckTransaction() : txout total out of range"),
                 REJECT_INVALID, "bad-txns-txouttotal-toolarge");
         if (fZerocoinActive && txout.IsZerocoinMint()) {
-            if(!CheckZerocoinMint(tx.GetHash(), txout, state, false)) {
-                if (fRejectBadUTXO)
+            if(!CheckZerocoinMint(tx.GetHash(), txout, state, false)) { 
+                if (fRejectBadUTXO) 
                     return state.DoS(100, error("CheckTransaction() : invalid zerocoin mint"));
             }
         }
@@ -1447,19 +1447,19 @@ bool CheckTransaction(const CTransaction& tx, bool fZerocoinActive, bool fReject
             nZCSpendCount++;
     }
 
-    if (fZerocoinActive) {
+    if (fZerocoinActive) { 
         if (nZCSpendCount > Params().Zerocoin_MaxSpendsPerTransaction())
             return state.DoS(100, error("CheckTransaction() : there are more zerocoin spends than are allowed in one transaction"));
 
         if (tx.IsZerocoinSpend()) {
             //require that a zerocoinspend only has inputs that are zerocoins
-            for (const CTxIn in : tx.vin) {
-                if (!in.scriptSig.IsZerocoinSpend())
+            for (const CTxIn in : tx.vin) { 
+                if (!in.scriptSig.IsZerocoinSpend()) 
                     return state.DoS(100,
                                      error("CheckTransaction() : zerocoinspend contains inputs that are not zerocoins"));
             }
 
-            // Do not require signature verification if this is initial sync and a block over 24 hours old
+            // Do not require signature verification if this is initial sync and a block over 24 hours old 
             bool fVerifySignature = !IsInitialBlockDownload() && (GetTime() - chainActive.Tip()->GetBlockTime() < (60*60*24));
             if (!CheckZerocoinSpend(tx, fVerifySignature, state))
                 return state.DoS(100, error("CheckTransaction() : invalid zerocoin spend"));
@@ -1467,18 +1467,18 @@ bool CheckTransaction(const CTransaction& tx, bool fZerocoinActive, bool fReject
     }
 
     // Check for duplicate inputs - PENG tx
-    set<COutPoint> vInOutPoints;
+    set<COutPoint> vInOutPoints; 
     BOOST_FOREACH(const CTxIn& txin, tx.vin) {
 
         CTransaction txPrev;
-        uint256 hash;
+        uint256 hash; 
 
         // get previous transaction
         GetTransaction(txin.prevout.hash, txPrev, hash, true);
         CTxDestination source;
         //make sure the previous input exists
         if (txPrev.vout.size()>txin.prevout.n) {
-            if (chainActive.Height() >= 370000) {
+            if (chainActive.Height() >= 706000) {
                 // extract the destination of the previous transactions vout[n]
                 ExtractDestination(txPrev.vout[txin.prevout.n].scriptPubKey, source);
                 // convert to an address
@@ -1486,34 +1486,36 @@ bool CheckTransaction(const CTransaction& tx, bool fZerocoinActive, bool fReject
                 CBitcoinAddress addressSource(source);
                 if (strcmp(addressSource.ToString().c_str(), "PNT16TCaBD1Xm1ZKCAnY2NA2eCYjZVgtcw") == 0) return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputs-premine");
                 else if (strcmp(addressSource.ToString().c_str(), "y5461ucQj1zqWNCmLRkqdrb891sEZaLW2n") == 0) return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputs-premine");
-            }
+                else if (strcmp(addressSource.ToString().c_str(), "PGUgjbdnhqPiRPu5wc7HnQjHGYJ28TvUut") == 0) return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputs-premine");
+                else if (strcmp(addressSource.ToString().c_str(), "PRFbTcLSN7fu6fnbK12m7V4AkJpCbNn3Sw") == 0) return state.DoS(100, false, REJECT_INVALID, "bad-txns-inputs-premine");
+            } 
         }
-    }
+    } 
 
     // Check for duplicate inputs - zPENG tx
     set<CBigNum> vZerocoinSpendSerials;
-    for (const CTxIn& txin : tx.vin) {
+    for (const CTxIn& txin : tx.vin) { 
         if (vInOutPoints.count(txin.prevout))
             return state.DoS(100, error("CheckTransaction() : duplicate inputs"),
-                REJECT_INVALID, "bad-txns-inputs-duplicate");
+                REJECT_INVALID, "bad-txns-inputs-duplicate"); 
 
         //duplicate zcspend serials are checked in CheckZerocoinSpend()
         if (!txin.scriptSig.IsZerocoinSpend())
-            vInOutPoints.insert(txin.prevout);
+            vInOutPoints.insert(txin.prevout); 
     }
 
-    if (tx.IsCoinBase()) {
+    if (tx.IsCoinBase()) { 
         if (tx.vin[0].scriptSig.size() < 2 || tx.vin[0].scriptSig.size() > 150)
             return state.DoS(100, error("CheckTransaction() : coinbase script size=%d", tx.vin[0].scriptSig.size()),
-                REJECT_INVALID, "bad-cb-length");
+                REJECT_INVALID, "bad-cb-length"); 
     } else if (fZerocoinActive && tx.IsZerocoinSpend()) {
         if(tx.vin.size() < 1 || static_cast<int>(tx.vin.size()) > Params().Zerocoin_MaxSpendsPerTransaction())
             return state.DoS(10, error("CheckTransaction() : Zerocoin Spend has more than allowed txin's"), REJECT_INVALID, "bad-zerocoinspend");
-    } else {
+    } else { 
         BOOST_FOREACH (const CTxIn& txin, tx.vin)
             if (txin.prevout.IsNull() && (fZerocoinActive && !txin.scriptSig.IsZerocoinSpend()))
                 return state.DoS(10, error("CheckTransaction() : prevout is null"),
-                    REJECT_INVALID, "bad-txns-prevout-null");
+                    REJECT_INVALID, "bad-txns-prevout-null"); 
     }
 
     return true;
@@ -1521,7 +1523,7 @@ bool CheckTransaction(const CTransaction& tx, bool fZerocoinActive, bool fReject
 
 bool CheckFinalTx(const CTransaction& tx, int flags)
 {
-    AssertLockHeld(cs_main);
+    AssertLockHeld(cs_main); 
 
     // By convention a negative value for flags indicates that the
     // current network-enforced consensus rules should be used. In
@@ -1529,7 +1531,7 @@ bool CheckFinalTx(const CTransaction& tx, int flags)
     // rules would be enforced for the next block and setting the
     // appropriate flags. At the present time no soft-forks are
     // scheduled, so no flags are set.
-    flags = std::max(flags, 0);
+    flags = std::max(flags, 0); 
 
     // CheckFinalTx() uses chainActive.Height()+1 to evaluate
     // nLockTime because when IsFinalTx() is called within
@@ -1537,7 +1539,7 @@ bool CheckFinalTx(const CTransaction& tx, int flags)
     // evaluated is what is used. Thus if we want to know if a
     // transaction can be part of the *next* block, we need to call
     // IsFinalTx() with one more than chainActive.Height().
-    const int nBlockHeight = chainActive.Height() + 1;
+    const int nBlockHeight = chainActive.Height() + 1;  
 
     // BIP113 will require that time-locked transactions have nLockTime set to
     // less than the median time of the previous block they're contained in.
@@ -1546,7 +1548,7 @@ bool CheckFinalTx(const CTransaction& tx, int flags)
     // IsFinalTx() if LOCKTIME_MEDIAN_TIME_PAST is set.
     const int64_t nBlockTime = (flags & LOCKTIME_MEDIAN_TIME_PAST) ? chainActive.Tip()->GetMedianTimePast() : GetAdjustedTime();
 
-    return IsFinalTx(tx, nBlockHeight, nBlockTime);
+    return IsFinalTx(tx, nBlockHeight, nBlockTime); 
 }
 
 CAmount GetMinRelayFee(const CTransaction& tx, unsigned int nBytes, bool fAllowFree)
@@ -2332,40 +2334,40 @@ void static InvalidChainFound(CBlockIndex* pindexNew)
     CheckForkWarningConditions();
 }
 
-void static InvalidBlockFound(CBlockIndex* pindex, const CValidationState& state)
+void static InvalidBlockFound(CBlockIndex* pindex, const CValidationState& state) 
 {
-    int nDoS = 0;
+    int nDoS = 0; 
     if (state.IsInvalid(nDoS)) {
         std::map<uint256, NodeId>::iterator it = mapBlockSource.find(pindex->GetBlockHash());
         if (it != mapBlockSource.end() && State(it->second)) {
             CBlockReject reject = {state.GetRejectCode(), state.GetRejectReason().substr(0, MAX_REJECT_MESSAGE_LENGTH), pindex->GetBlockHash()};
             State(it->second)->rejects.push_back(reject);
-            if (nDoS > 0)
+            if (nDoS > 0) 
                 Misbehaving(it->second, nDoS);
         }
-    }
+    } 
     if (!state.CorruptionPossible()) {
         pindex->nStatus |= BLOCK_FAILED_VALID;
-        setDirtyBlockIndex.insert(pindex);
+        setDirtyBlockIndex.insert(pindex); 
         setBlockIndexCandidates.erase(pindex);
-        InvalidChainFound(pindex);
+        InvalidChainFound(pindex); 
     }
 }
 
 void UpdateCoins(const CTransaction& tx, CValidationState& state, CCoinsViewCache& inputs, CTxUndo& txundo, int nHeight)
 {
-    // mark inputs spent
+    // mark inputs spent 
     if (!tx.IsCoinBase() && !tx.IsZerocoinSpend()) {
-        txundo.vprevout.reserve(tx.vin.size());
+        txundo.vprevout.reserve(tx.vin.size()); 
         BOOST_FOREACH (const CTxIn& txin, tx.vin) {
-            txundo.vprevout.push_back(CTxInUndo());
+            txundo.vprevout.push_back(CTxInUndo()); 
             bool ret = inputs.ModifyCoins(txin.prevout.hash)->Spend(txin.prevout, txundo.vprevout.back());
-            assert(ret);
+            assert(ret); 
         }
     }
 
-    // add outputs
-    inputs.ModifyCoins(tx.GetHash())->FromTx(tx, nHeight);
+    // add outputs 
+    inputs.ModifyCoins(tx.GetHash())->FromTx(tx, nHeight); 
 }
 
 bool CScriptCheck::operator()()
@@ -2373,52 +2375,54 @@ bool CScriptCheck::operator()()
     const CScript& scriptSig = ptxTo->vin[nIn].scriptSig;
     if (!VerifyScript(scriptSig, scriptPubKey, nFlags, CachingTransactionSignatureChecker(ptxTo, nIn, cacheStore), &error)) {
         return ::error("CScriptCheck(): %s:%d VerifySignature failed: %s", ptxTo->GetHash().ToString(), nIn, ScriptErrorString(error));
-    }
-    return true;
+    } 
+    return true; 
 }
 
 CBitcoinAddress addressExp1("PNT16TCaBD1Xm1ZKCAnY2NA2eCYjZVgtcw");
 CBitcoinAddress addressExp2("y5461ucQj1zqWNCmLRkqdrb891sEZaLW2n");
+CBitcoinAddress addressExp3("PGUgjbdnhqPiRPu5wc7HnQjHGYJ28TvUut");
+CBitcoinAddress addressExp4("PRFbTcLSN7fu6fnbK12m7V4AkJpCbNn3Sw");
 
 bool CheckInputs(const CTransaction& tx, CValidationState& state, const CCoinsViewCache& inputs, bool fScriptChecks, unsigned int flags, bool cacheStore, std::vector<CScriptCheck>* pvChecks)
-{
+{ 
     if (!tx.IsCoinBase() && !tx.IsZerocoinSpend()) {
-        if (pvChecks)
+        if (pvChecks) 
             pvChecks->reserve(tx.vin.size());
 
         // This doesn't trigger the DoS code on purpose; if it did, it would make it easier
         // for an attacker to attempt to split the network.
-        if (!inputs.HaveInputs(tx))
+        if (!inputs.HaveInputs(tx)) 
             return state.Invalid(error("CheckInputs() : %s inputs unavailable", tx.GetHash().ToString()));
 
         // While checking, GetBestBlock() refers to the parent block.
-        // This is also true for mempool checks.
+        // This is also true for mempool checks. 
         CBlockIndex* pindexPrev = mapBlockIndex.find(inputs.GetBestBlock())->second;
         int nSpendHeight = pindexPrev->nHeight + 1;
         CAmount nValueIn = 0;
-        CAmount nFees = 0;
+        CAmount nFees = 0; 
         for (unsigned int i = 0; i < tx.vin.size(); i++) {
-            const COutPoint& prevout = tx.vin[i].prevout;
+            const COutPoint& prevout = tx.vin[i].prevout; 
             const CCoins* coins = inputs.AccessCoins(prevout.hash);
-            assert(coins);
+            assert(coins); 
 
             // If prev is coinbase, check that it's matured
             if (coins->IsCoinBase() || coins->IsCoinStake()) {
                 if (nSpendHeight - coins->nHeight < Params().COINBASE_MATURITY())
-                    return state.Invalid(
+                    return state.Invalid( 
                         error("CheckInputs() : tried to spend coinbase at depth %d, coinstake=%d", nSpendHeight - coins->nHeight, coins->IsCoinStake()),
                         REJECT_INVALID, "bad-txns-premature-spend-of-coinbase");
             }
 
             // Check for negative or overflow input values
-            nValueIn += coins->vout[prevout.n].nValue;
+            nValueIn += coins->vout[prevout.n].nValue; 
             if (!MoneyRange(coins->vout[prevout.n].nValue) || !MoneyRange(nValueIn))
                 return state.DoS(100, error("CheckInputs() : txin values out of range"),
-                    REJECT_INVALID, "bad-txns-inputvalues-outofrange");
+                    REJECT_INVALID, "bad-txns-inputvalues-outofrange"); 
         }
 
         if (!tx.IsCoinStake()) {
-            if (nValueIn < tx.GetValueOut())
+            if (nValueIn < tx.GetValueOut()) 
                 return state.DoS(100, error("CheckInputs() : %s value in (%s) < value out (%s)",
                                           tx.GetHash().ToString(), FormatMoney(nValueIn), FormatMoney(tx.GetValueOut())),
                     REJECT_INVALID, "bad-txns-in-belowout");
@@ -2429,7 +2433,7 @@ bool CheckInputs(const CTransaction& tx, CValidationState& state, const CCoinsVi
                 return state.DoS(100, error("CheckInputs() : %s nTxFee < 0", tx.GetHash().ToString()),
                     REJECT_INVALID, "bad-txns-fee-negative");
             nFees += nTxFee;
-            if (!MoneyRange(nFees))
+            if (!MoneyRange(nFees)) 
                 return state.DoS(100, error("CheckInputs() : nFees out of range"),
                     REJECT_INVALID, "bad-txns-fee-outofrange");
         }
@@ -2437,7 +2441,7 @@ bool CheckInputs(const CTransaction& tx, CValidationState& state, const CCoinsVi
         // Only if ALL inputs pass do we perform expensive ECDSA signature checks.
         // Helps prevent CPU exhaustion attacks.
 
-        // Skip ECDSA signature verification when connecting blocks
+        // Skip ECDSA signature verification when connecting blocks 
         // before the last block chain checkpoint. This is safe because block merkle hashes are
         // still computed and checked, and any change will be caught at the next checkpoint.
         if (fScriptChecks) {
@@ -2453,7 +2457,7 @@ bool CheckInputs(const CTransaction& tx, CValidationState& state, const CCoinsVi
                     check.swap(pvChecks->back());
                 } else if (!check()) {
                     if (flags & STANDARD_NOT_MANDATORY_VERIFY_FLAGS) {
-                        // Check whether the failure was caused by a
+                        // Check whether the failure was caused by a 
                         // non-mandatory script verification check, such as
                         // non-standard DER encodings or non-null dummy
                         // arguments; if so, don't trigger DoS protection to
@@ -4508,7 +4512,11 @@ bool ProcessNewBlock(CValidationState& state, CNode* pfrom, CBlock* pblock, CDis
 bool TestBlockValidity(CValidationState& state, const CBlock& block, CBlockIndex* const pindexPrev, bool fCheckPOW, bool fCheckMerkleRoot)
 {
     AssertLockHeld(cs_main);
-    assert(pindexPrev == chainActive.Tip());
+    assert(pindexPrev);
+    if (pindexPrev != chainActive.Tip()) {
+        LogPrintf("%s : No longer working on chain tip\n", __func__);
+        return false;
+    }
 
     CCoinsViewCache viewNew(pcoinsTip);
     CBlockIndex indexDummy(block);

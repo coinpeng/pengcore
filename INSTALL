@@ -6,6 +6,15 @@ Use the autogen script to prepare the build environment.
     ./configure
     make
 
+If you run into issues with building from source, please use depends:
+
+    cd depends
+	make
+	cd ..
+    ./autogen.sh
+    ./configure --prefix=$PWD/pengcore/depends/$host
+    make
+
 Always verify the signatures and checksums.
 
 See doc/build-*.md for instructions on building pengd,
