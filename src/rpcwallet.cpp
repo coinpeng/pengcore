@@ -1633,15 +1633,23 @@ Value walletpassphrase(const Array& params, bool fHelp)
 
     if (!pwalletMain->IsLocked() && pwalletMain->fWalletUnlockAnonymizeOnly && anonymizeOnly)
         throw JSONRPCError(RPC_WALLET_ALREADY_UNLOCKED, "Error: Wallet is already unlocked.");
+	
+    // Get the timeout
+    int64_t nSleepTime = params[1].get_int64();
+    // Timeout cannot be negative, otherwise it will relock immediately
+    if (nSleepTime < 0) {
+        throw JSONRPCError(RPC_INVALID_PARAMETER, "Timeout cannot be negative.");
+    }
+    // Clamp timeout
+    constexpr int64_t MAX_SLEEP_TIME = 100000000; // larger values trigger a macos/libevent bug?
+    if (nSleepTime > MAX_SLEEP_TIME) {
+        nSleepTime = MAX_SLEEP_TIME;
+    }
 
     if (!pwalletMain->Unlock(strWalletPass, anonymizeOnly))
         throw JSONRPCError(RPC_WALLET_PASSPENGASE_INCORRECT, "Error: The wallet passphrase entered was incorrect.");
 
     pwalletMain->TopUpKeyPool();
-
-    int64_t nSleepTime = params[1].get_int64();
-    LOCK(cs_nWalletUnlockTime);
-    nWalletUnlockTime = GetTime() + nSleepTime;
 
     if (nSleepTime > 0) {
         nWalletUnlockTime = GetTime () + nSleepTime;
@@ -2737,6 +2745,10 @@ Value importzerocoins(const Array& params, bool fHelp)
         const Object &o = val.get_obj();
 
         int d = ParseInt(o, "d");
+        const UniValue& vDenom = find_value(o, "d");
+        if (!vDenom.isNum())
+            throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid parameter, missing d key");
+        int d = vDenom.get_int();
         if (d < 0)
             throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid parameter, d must be positive");
 
@@ -2746,11 +2758,11 @@ Value importzerocoins(const Array& params, bool fHelp)
         CBigNum bnRandom = CBigNum(find_value(o, "r").get_str());
         uint256 txid(find_value(o, "t").get_str());
 
-        int nHeight = ParseInt(o, "h");
+        int nHeight = find_value(o, "h").get_int();
         if (nHeight < 0)
             throw JSONRPCError(RPC_INVALID_PARAMETER, "Invalid parameter, h must be positive");
 
-        bool fUsed = ParseBool(o, "u");
+        bool fUsed = find_value(o, "u").get_bool();
         CZerocoinMint mint(denom, bnValue, bnRandom, bnSerial, fUsed);
         mint.SetTxHash(txid);
         mint.SetHeight(nHeight);
