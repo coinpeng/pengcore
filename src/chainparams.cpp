@@ -64,7 +64,11 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
     (650001, uint256("0x6469feef22d2dbf07ffb24e4499aee12df8e8d82be4c30119bf043354ca9df1d"))
     (700002, uint256("0xf668c3cd62fd8ba58d33201ca59a63f0f9b648df0687071adb84ae1a2ad27b2d"))
     (705000, uint256("0x12d329ab48f68047391f45e69867bf843f95c8f76da281b0857d2cb0fe605805"))
-    (770000, uint256("0x3df5a87d07c530f2cf240170969151516c3629ca112d006a13d9b029cfbde26d"));
+    (770000, uint256("0x3df5a87d07c530f2cf240170969151516c3629ca112d006a13d9b029cfbde26d"))
+    (775000, uint256("0x57cef6f151c8b96192a3c8e98bd4e184e888eacf10f19bbed8ecfb312cf82a67"))
+    (780000, uint256("0x93c30548f474aa088dfd58e0231a6c1af8874eb1750d0cb0d2b4a7f1c4048ed4"))
+    (785000, uint256("0xf9d14403786dd0762f3b0ab225e4b87da337489f90dc6e74ac21e4eecfc7a6cf"))
+    (787000, uint256("0xcfb4eee6700e92193c0deaef90375a7fae1d0331cdf96827444ad9aa38b46d88"));
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
     1557997119, // * UNIX timestamp of last checkpoint block
